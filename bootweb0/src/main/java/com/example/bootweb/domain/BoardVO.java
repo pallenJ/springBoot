@@ -19,8 +19,8 @@ public class BoardVO {
 	private String title;
 	private String writer;
 	private String content;
-	private Date regDate;
-	private Date updateDate;
+	private String regDate;
+	private String updateDate;
 	public BoardVO(String title, String writer, String content) {
 		super();
 		this.title = title;

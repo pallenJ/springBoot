@@ -11,4 +11,25 @@
 SELECT * FROM tbl_board
 </select>
 
+<select id="listWithPaging" resultType="com.example.bootweb.domain.BoardVO" parameterType="com.example.bootweb.domain.Criteria">
+SELECT 
+A.bno ,
+A.title,
+A.writer,
+A.content,
+if(
+TIMESTAMPDIFF(MINUTE,A.regDate,NOW())>1440
+,DATE_FORMAT(A.regdate,'%Y-%m-%d') , DATE_FORMAT(A.regdate,'%H:%i')) AS regdate,
+if(
+TIMESTAMPDIFF(MINUTE,A.updateDate,NOW())>1440
+,DATE_FORMAT(A.updateDate,'%Y-%m-%d') , DATE_FORMAT(A.updateDate,'%H:%i')) AS updatedate
+ FROM tbl_board A 
+LIMIT #{limit},#{amount}
+</select>
+
+<select id="countAll" resultType="int">
+SELECT COUNT(*) FROM tbl_board;
+</select>
+
+
 </mapper>

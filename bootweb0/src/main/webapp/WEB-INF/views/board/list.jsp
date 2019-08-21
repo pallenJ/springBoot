@@ -11,9 +11,9 @@
 <title>Insert title here</title>
 </head>
 <body>
-<script type="text/javascript">
-//alert("{list}");
-</script>
+	<script type="text/javascript">
+		//alert("{list}");
+	</script>
 	<div class="row">
 		<div class="col-lg-12">
 			<div class="panel panel-default">
@@ -47,7 +47,6 @@
 								 --%>
 										<td><c:out value="${board.writer}" />
 										<td><c:out value="${board.regDate}" />
-
 										<td><c:out value="${board.updateDate}" />
 								</c:forEach>
 
@@ -75,41 +74,46 @@
 						</div>
 					</div> --%>
 
-						<%-- 					
-					<div class = 'pull-right'>
-						<ul class="pagination">
-							<c:if test="${pageMaker.prev}">
-								<li class="paginate_button previous">
-								<a href="${pageMaker.startPage-1}">Previous</a>
+
+						<div style="align-items: center;">
+							<ul class="pagination">
+								<c:if test="${paging.prev}">
+								<li class="page-item"><a class="page-link"
+									href="#" role="${paging.startPage}">&laquo;</a></li>
+								</c:if>
+								<c:forEach var="pg" begin="${paging.startPage+1}" end="${paging.endPage}">
+								<c:choose>
+									<c:when test="${param.p eq pg}">
+									<li class="page-item active">
+									</c:when>
+									<c:otherwise>
+									<li class="page-item">
+									</c:otherwise>
+								</c:choose>
+								<a class="page-link page-btn" href="#" role="${pg}">
+								${pg}</a>
 								</li>
-							</c:if>
-							
-							<c:forEach var="num" begin="${pageMaker.startPage}" end="${pageMaker.endPage}" >
-							
-								<li class='paginate_button ${pageMaker.cri.pageNum == num?"active":""}'>
-								<a href="${num}">${num}</a>
+								
+									<c:if test="${param.p eq pg}">
+									
+									</c:if>
+								
+								</c:forEach>
+								<c:if test="${paging.next}">
+								<li class="page-item"><a class="page-link page-btn" href="#" role="${paging.endPage+1}">&raquo;</a>
 								</li>
+								</c:if>
+							</ul>
 							
-							</c:forEach>
-							
-							<c:if test="${pageMaker.next}">
-								<li class="paginate_button next">
-								<a href="${pageMaker.endPage+1}">Next</a>
-								</li>
-							</c:if>
-						</ul>
-					</div> --%>
+						</div>
+						
+
 						<!-- end Pagination -->
 
 						<form id="actionForm" action="/board/list" method="get">
-							<input type="hidden" name="pageNum"
-								value="${pageMaker.cri.pageNum}"> <input type="hidden"
-								name="amount" value="${pageMaker.cri.amount}"> <input
-								type="hidden" name="type" value="${pageMaker.cri.type}">
-							<input type="hidden" name="keyword"
-								value="${pageMaker.cri.keyword}">
+							<input type="hidden" name = 'p' value="${param.p}">
+							<input type="hidden" name = 'amt' value="${param.amt}">
 						</form>
-
 
 						<!-- Modal -->
 
@@ -153,4 +157,14 @@
 	<!-- /.row -->
 
 </body>
+<script type="text/javascript">
+$(function () {
+	var actionForm = $("#actionForm");
+	$(".page-link").click(function() {
+ 		var go = $(this).attr("role");
+		actionForm.find("input[name='p']").val(go);
+ 		actionForm.submit();
+	})
+})
+</script>
 </html>

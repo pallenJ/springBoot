@@ -1,19 +1,39 @@
 package com.example.bootweb.domain;
 
-import java.util.List;
+import lombok.*;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
-
+@ToString
 @Getter
-@Setter
 @NoArgsConstructor
-@AllArgsConstructor
 public class Criteria {
-
-	private int pageNum;
-	private int amount;
+	
+	protected @Setter int max = -1;
+	protected int pageNum;
+	protected int amount;
+	protected int limit;
+	
+	public Criteria(int pageNum, int amount) {
+		this.pageNum = pageNum;
+		this.amount = amount;
+		setLimit();
+	}
+	public Criteria(int pageNum, int amount, int max) {
+		this.pageNum = pageNum;
+		this.amount = amount;
+		this.max=max;
+		setLimit();
+	}
+	
+	public void setLimit() {
+		this.limit = this.amount * (this.pageNum-1);
+	}
+	public void setPageNum(int pageNum) {
+		this.pageNum = pageNum;
+		setLimit();
+	}
+	public void setAmount(int amount) {
+		this.amount = amount;
+		setLimit();
+	}
 	
 }

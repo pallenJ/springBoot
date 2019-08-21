@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.example.bootweb.domain.Criteria;
 import com.example.bootweb.mapper.BoardMapper;
 import com.example.bootweb.service.inf.BoardService;
 
@@ -16,8 +17,18 @@ public class BoardServiceImpl implements BoardService {
 
 	@Override
 	public List<?> listAll() {
-		// TODO Auto-generated method stub
 		return boardMapper.listAll();
+	}
+
+	@Override
+	public List<?> list(Criteria cri) {
+		return boardMapper.listWithPaging(cri);
+	}
+
+	@Override
+	public int countAll() {
+		// TODO Auto-generated method stub
+		return boardMapper.countAll();
 	}
 	
 	

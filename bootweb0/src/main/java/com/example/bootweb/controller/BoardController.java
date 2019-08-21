@@ -3,6 +3,7 @@ package com.example.bootweb.controller;
 import java.util.List;
 
 import javax.inject.Inject;
+import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -11,6 +12,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.example.bootweb.domain.Criteria;
+import com.example.bootweb.domain.PagingView;
 import com.example.bootweb.service.inf.BoardService;
 
 import lombok.extern.slf4j.Slf4j;
@@ -25,11 +28,22 @@ public class BoardController {
 	private BoardService boardService;
 	
 	@GetMapping("list")
-	public void list(Model model) {
-	
-	List<?> list = 	boardService.listAll();
-	log.info(list.get(0).toString());	
+	public void list(HttpServletRequest request,Model model) {
+	int pageNum = 1;
+	int amount = 10;
+	int max = boardService.countAll();
+	log.info("max:"+max);
+	try {
+		pageNum = Integer.parseInt(request.getParameter("p"));
+		amount = Integer.parseInt(request.getParameter("amt"));
+	} catch (Exception e) {}
+	Criteria cri = new Criteria(pageNum, amount, max);
+	List<?> list = 	boardService.list(cri);
+	log.info(cri.toString());	
+	log.info(new PagingView(cri).toString());	
 	model.addAttribute("list", list);
+	model.addAttribute("paging", new PagingView(cri));
+	model.addAttribute("amount",amount);
 	}
 	
 }
