@@ -4,6 +4,8 @@
 
 <insert id="insert" parameterType="com.example.bootweb.domain.BoardVO">
 
+INSERT INTO tbl_board  
+(title,writer,content) VALUES (#{title},#{writer},#{content})
 
 </insert>
 
@@ -12,6 +14,19 @@ SELECT * FROM tbl_board
 </select>
 
 <select id="listWithPaging" resultType="com.example.bootweb.domain.BoardVO" parameterType="com.example.bootweb.domain.Criteria">
+<include refid="forSelect"/>
+ORDER BY A.updatedate DESC, bno DESC
+LIMIT #{limit},#{amount}
+</select>
+
+<select id="countAll" resultType="int">
+SELECT COUNT(*) FROM tbl_board;
+</select>
+<select id="select" parameterType="int" resultType="com.example.bootweb.domain.BoardVO">
+<include refid="forSelect"/>
+WHERE bno = #{bno}
+</select>
+<sql id="forSelect">
 SELECT 
 A.bno ,
 A.title,
@@ -23,13 +38,7 @@ TIMESTAMPDIFF(MINUTE,A.regDate,NOW())>1440
 if(
 TIMESTAMPDIFF(MINUTE,A.updateDate,NOW())>1440
 ,DATE_FORMAT(A.updateDate,'%Y-%m-%d') , DATE_FORMAT(A.updateDate,'%H:%i')) AS updatedate
- FROM tbl_board A 
-LIMIT #{limit},#{amount}
-</select>
-
-<select id="countAll" resultType="int">
-SELECT COUNT(*) FROM tbl_board;
-</select>
-
+ FROM tbl_board A
+</sql>
 
 </mapper>

@@ -14,14 +14,20 @@
 	<script type="text/javascript">
 		//alert("{list}");
 	</script>
-	<div class="row">
+	<div class="row" align="center">
 		<div class="col-lg-12">
 			<div class="panel panel-default">
 				<div class="panel-heading">Board List Page</div>
 				<!-- /.panel-heading -->
 				<div class="panel-body">
 					<div class="table-responsive">
-						<table class="table table-striped table-bordered table-hover"
+					<form action="/board/register" method="get">
+										<button id = "brd-register" class ="btn btn-success" type="submit"> 새글 </button>
+					</form>
+							
+					
+					
+						<table class="table table-hover"
 							id="dataTables-example">
 							<thead>
 								<tr>
@@ -37,7 +43,7 @@
 								<c:forEach items="${list}" var="board">
 									<tr>
 										<td><c:out value="${board.bno}" />
-										<td><a class='move' href='<c:out value="${board.bno}"/>'>
+										<td><a class='move' href='/board/${board.bno}'>
 												<c:out value="${board.title}" />
 										</a> <%-- 	<b>
 									<font color="red" size="1.5">
@@ -51,6 +57,7 @@
 								</c:forEach>
 
 							</tbody>
+							
 						</table>
 
 
@@ -75,21 +82,21 @@
 					</div> --%>
 
 
-						<div style="align-items: center;">
+						<div style="align-items: center;" align="center">
 							<ul class="pagination">
 								<c:if test="${paging.prev}">
 								<li class="page-item"><a class="page-link"
 									href="#" role="${paging.startPage}">&laquo;</a></li>
 								</c:if>
 								<c:forEach var="pg" begin="${paging.startPage+1}" end="${paging.endPage}">
-								<c:choose>
+								<%-- <c:choose>
 									<c:when test="${param.p eq pg}">
 									<li class="page-item active">
 									</c:when>
 									<c:otherwise>
-									<li class="page-item">
 									</c:otherwise>
-								</c:choose>
+								</c:choose> --%>
+									<li class="page-item" id="page-item-${pg}">
 								<a class="page-link page-btn" href="#" role="${pg}">
 								${pg}</a>
 								</li>
@@ -109,12 +116,13 @@
 						
 
 						<!-- end Pagination -->
-
-						<form id="actionForm" action="/board/list" method="get">
+						<!-- move form -->
+						<form id="pagingForm" action="/board/list" method="get">
 							<input type="hidden" name = 'p' value="${param.p}">
 							<input type="hidden" name = 'amt' value="${param.amt}">
 						</form>
-
+	
+	
 						<!-- Modal -->
 
 						<div class="modal fade" id="myModal" tabindex="-1" role="dialog"
@@ -159,12 +167,27 @@
 </body>
 <script type="text/javascript">
 $(function () {
-	var actionForm = $("#actionForm");
+	pagingBtnActive();
+	var actionForm;
 	$(".page-link").click(function() {
+        actionForm = $("#pagingForm");
  		var go = $(this).attr("role");
 		actionForm.find("input[name='p']").val(go);
  		actionForm.submit();
-	})
+	});
+	
+	$(".move").click(function() {
+		actionForm
+		var go = $(this).attr("href");
+		alert(go);
+	});
+	
+	function pagingBtnActive(){
+		var pg = "${param.p}"; 
+		if(pg=="")	pg = 1;
+		$("#page-item-"+pg).addClass("active");
+	}
+	
 })
 </script>
 </html>

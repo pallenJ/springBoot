@@ -3,12 +3,12 @@
 <!DOCTYPE html>
 <%
 try{
-	
+int idx = 4;	
 pageContext.setAttribute("theme", new String[]{
 		"cerulean","cosmo","cyborg","darkly","flatly","journal","litera",
 		"lumen","lux","materia","minty","pulse","sandstone","simplex",
 		"sketchy","slate","solar","spacelab","superhero","united","yeti"
-				}[0]);//21개 테마
+				}[idx%21]);//21개 테마
 }catch(Exception e){
 pageContext.setAttribute("theme", "journal");
 	
