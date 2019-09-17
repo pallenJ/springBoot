@@ -68,10 +68,22 @@ public class BoardController {
 	public void register() {}
 	
 	@PostMapping(value = "/register")
-	public String register(BoardVO vo , Model model) {
+	public String register(BoardVO vo ,HttpServletRequest request, Model model) {
+		if(vo.getWriter()==null||vo.getWriter().equals("")) vo.setWriter("익명");
+		int bno = vo.getBno();
+        String ip = request.getHeader("X-FORWARDED-FOR");
+        if (ip == null)
+            ip = request.getRemoteAddr();
+		vo.setIp_address(ip);
+		
 		log.info(vo.toString());
+		
 		boardService.register(vo);
-		return "redirect:/board/list";
+		
+		if(bno>0)
+			return "redirect:/board/"+bno;
+		else
+			return "redirect:/board/list";
 	}
 	
 	

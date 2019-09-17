@@ -31,7 +31,7 @@ public class PagingView extends Criteria{
 	private void pageCalculate() {
 		int last;
 		int total = super.max;
-		last = (int)(Math.ceil(total*1.0))/showPages+(total%showPages==0?0:1);
+		last = (int)(Math.ceil(total*1.0))/super.amount+(total%super.amount==0?0:1);
 		this.endPage = (1+(this.pageNum-1)/showPages)*showPages;//pagenum이 showpages로 나눠서 떨어질경우 pageNum/showPage로 계산하면 로직에러. 나눠서 떨어질 경우에 대한 별도의 처리 필요없이 1을 뺌.
 		this.startPage = this.endPage-showPages;
 		

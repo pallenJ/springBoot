@@ -1,26 +1,21 @@
 <%@page import="java.util.Date"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@include file="../include/header.jsp"%>
 <%@ taglib prefix='c' uri='http://java.sun.com/jsp/jstl/core'%>
 <%@ taglib prefix='fmt' uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.js"></script>
-<script src="http://netdna.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.js"></script>
+<%@include file="../include/header.jsp"%>
 
-<!-- include summernote css/js -->
-<link href="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.11/summernote.css" rel="stylesheet">
-<script src="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.11/summernote.js"></script>
-<!-- include summernote-ko-KR -->
 <title>Board</title>
 </head>
 <body>
 	<%-- <h1>${bno}</h1> --%>
-
-	<div class="row">
+	<c:set var = "modal_name" value="modify"></c:set>
+	<c:set var = "modal_msg" value="정말 수정하시겠습니까?"></c:set>
+	<div class="row container">
 		<div class="col-lg-12">
 			<div class="panel panel-default">
 				<div class="panel-heading">
@@ -29,42 +24,51 @@
 					</div>
 				</div>
 				<!-- /.panel-heading -->
+				
+			
 				<div class="panel-body">
-					<div class="form-group">
+					<form action="/board/register" method="post" id = "board_form">
+					<div class="form-group" id= "bno_div">
 						<label>Bno</label> <input class="form-control" name="bno"
 							value='<c:out value="${board.bno}"></c:out>' readonly="readonly">
 					</div>
-
 					<div class="form-group">
 						<label>Title</label> <input class="form-control" name="title"
 							value='<c:out value="${board.title}"></c:out>'
-							readonly="readonly">
+							readonly="readonly" required/>
 					</div>
 					<div class="form-group">
 
-						<label>TextArea</label>
-						<!-- <textarea class="form-control" name="bno" rows="3"
-							readonly="readonly">
-				</textarea> -->
-				<div class="card border-primary">
-				<div id = "content-div"></div>
+				<div>	
+				<div class="card panel border border-dark">
 				
-				</div>
+				<div id = "" class = "panel-head border-primary content-div bg-primary">content</div>
+				<div id = "content_div" class = "panel-body border-primary content-div container-fluid"></div>
+				
+				</div></div>
+				<input type="hidden" name = "content">
 					</div>
-
+				
+					</form>
 					<div class="form-group">
 						<label>Writer</label> <input class="form-control" name="writer"
 							value='<c:out value="${board.writer}"></c:out>'
-							readonly="readonly">
+							readonly="readonly" required/>
 					</div>
-					<div>
-					<button data-oper="modify" class="btn btn-secondary" id = "brd-modify">Modify</button>
-
-
-					<button data-oper="list" class="btn btn-info">List</button>
 					
-					<button data-oper="new" class="btn btn-primary">new Post</button>
+					<div id = "detail-pg-btns">
+					<button data-oper="modify" class="btn btn-secondary" id = "brd_modify">Modify</button>
+					<button data-oper="list" class="btn btn-info btn-go" title="list">List</button>
+					<button data-oper="register" class="btn btn-primary btn-go" title ="register">new Post</button>
+					<button data-oper="cancel" class="btn btn-danger btn-go" title = "cancel" id = "cancel_brd_btn">cancel</button>
 					</div>
+					
+					<div>
+					
+					
+					
+					</div>
+					
 					<%-- 				<form id = "operForm" action="/board/modify" method="get">
 					<input type="hidden" id = "bno" name ="bno" value ='<c:out value="${board.bno}"></c:out>'>
 					<input type="hidden" id = "pageNum" name ="pageNum" value ='<c:out value="${param.pageNum}"></c:out>'>
@@ -82,10 +86,19 @@
 	</div>
 
 
+
+
+
+
 </body>
 
-<script type="text/javascript">
 
+	
+
+
+<script type="text/javascript">
+$(function () {
+	
 var content = "<c:out value='${board.content}'></c:out>"
 .replace(/&lt;/gi, "<")
 .replace(/&gt;/gi, ">")
@@ -94,12 +107,57 @@ var content = "<c:out value='${board.content}'></c:out>"
 .replace(/&#039;/gi,"\'")
 ;
 
+
+
+$("#cancel_brd_btn").hide();
+
 //alert(content);
-$("#content-div").html(content);
-$("#brd-modify").click(function() {
-$("#content-div").summernote("code",content);
+$("#content_div").html(content);
+$("#brd_modify").click(function() {
 	
+	var isDiv = ($("#content_div").prop("class")).indexOf( "content-div")>-1;
+	if(isDiv){
+	$("#content_div").summernote({
+		"code":content,
+		"display": "none"});
+	$("#content_div").prop("data-toggle", "modal")
+	$("#content_div").prop("data-target", "#modifyModal")
+	$("input[name!='writer']").prop("readonly", false);
+	$("#bno_div").hide();
+	$("#new-brd-btn").hide();
+	$("#cancel_brd_btn").show();
+	$("#content_div").removeClass("content-div")
+	}else{
+		//$("#board-form").submit();
+		$("#modifyModal").modal();
+		
+	}
+	
+	$(".btn-modal-save").click(function() {
+		$("input[name='content']").prop("value",$('#content_div').summernote("code"));
+		$("#board_form").submit();
+	})
+	
+});
+
+
+$(".btn-go").click(function() {
+	var go_url = $(this).prop("title");
+	if(go_url ==( null || "" ||"cancel")){
+		
+	}
+		location.reload();	
+	return;
+	$(location).attr("href", $(this).prop("title"));
 })
+
+
+
+
+
+});
 </script>
 
+
+<%@include file="../include/modals.jsp"%>
 </html>

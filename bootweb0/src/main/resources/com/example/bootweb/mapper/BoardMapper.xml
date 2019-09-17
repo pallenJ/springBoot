@@ -5,9 +5,16 @@
 <insert id="insert" parameterType="com.example.bootweb.domain.BoardVO">
 
 INSERT INTO tbl_board  
-(title,writer,content) VALUES (#{title},#{writer},#{content})
+(title,writer,content,ip_address) VALUES (#{title},#{writer},#{content},#{ip_address})
 
 </insert>
+
+<update id="update" parameterType="com.example.bootweb.domain.BoardVO">
+UPDATE tbl_board A 
+SET 
+A.title = #{title} , A.content = #{content},A.ip_address = #{ip_address}, A.updateDate = NOW() WHERE bno = #{bno}
+
+</update>
 
 <select id="listAll" resultType="com.example.bootweb.domain.BoardVO">
 SELECT * FROM tbl_board
@@ -22,10 +29,14 @@ LIMIT #{limit},#{amount}
 <select id="countAll" resultType="int">
 SELECT COUNT(*) FROM tbl_board;
 </select>
+
 <select id="select" parameterType="int" resultType="com.example.bootweb.domain.BoardVO">
 <include refid="forSelect"/>
 WHERE bno = #{bno}
 </select>
+
+
+
 <sql id="forSelect">
 SELECT 
 A.bno ,
@@ -33,12 +44,14 @@ A.title,
 A.writer,
 A.content,
 if(
-TIMESTAMPDIFF(MINUTE,A.regDate,NOW())>1440
-,DATE_FORMAT(A.regdate,'%Y-%m-%d') , DATE_FORMAT(A.regdate,'%H:%i')) AS regdate,
+TIMESTAMPDIFF(DAY,DATE_FORMAT(A.regdate,'%Y-%m-%d'),DATE_FORMAT(NOW(),'%Y-%m-%d'))>0
+,DATE_FORMAT(A.regdate,'%Y-%m-%d') ,
+ DATE_FORMAT(A.regdate,'%H:%i')) AS regdate,
 if(
-TIMESTAMPDIFF(MINUTE,A.updateDate,NOW())>1440
+TIMESTAMPDIFF(DAY,DATE_FORMAT(A.updateDate,'%Y-%m-%d'),DATE_FORMAT(NOW(),'%Y-%m-%d'))>0
 ,DATE_FORMAT(A.updateDate,'%Y-%m-%d') , DATE_FORMAT(A.updateDate,'%H:%i')) AS updatedate
  FROM tbl_board A
+
 </sql>
 
 </mapper>

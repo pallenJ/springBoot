@@ -12,5 +12,5 @@ public interface BoardMapper {
 	public List<?> listAll();
 	public List<?> listWithPaging(Criteria cri);	
 	public int countAll();
-	
+	public void update(BoardVO vo);
  }

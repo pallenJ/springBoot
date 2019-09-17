@@ -7,10 +7,28 @@
     "outline": {
       
     },
+    "doc_comment": {
+      "strong": true
+    },
+    "chrome-apps": {
+      
+    },
+    "chrome-extension": {
+      
+    },
     "browser-extension": {
       
     },
+    "bootstrap": {
+      
+    },
+    "jquery-ui1-12": {
+      
+    },
     "jquery-extension": {
+      
+    },
+    "jquery-mobile1.5": {
       
     }
   },

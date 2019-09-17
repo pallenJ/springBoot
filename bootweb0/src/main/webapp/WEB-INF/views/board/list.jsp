@@ -21,9 +21,11 @@
 				<!-- /.panel-heading -->
 				<div class="panel-body">
 					<div class="table-responsive">
+					<div align="left">
 					<form action="/board/register" method="get">
 										<button id = "brd-register" class ="btn btn-success" type="submit"> 새글 </button>
 					</form>
+					</div>
 							
 					
 					
@@ -165,6 +167,7 @@
 	<!-- /.row -->
 
 </body>
+   
 <script type="text/javascript">
 $(function () {
 	pagingBtnActive();
@@ -190,4 +193,5 @@ $(function () {
 	
 })
 </script>
+    <jsp:include page="/WEB-INF/views/include/modals.jsp"></jsp:include>
 </html>

@@ -83,6 +83,7 @@ $(function() {
 	  	alert($('#summernote').summernote("code"));
 	  	$("#board-form").submit();
 	  });
+
 	  
 	});
 

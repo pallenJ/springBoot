@@ -42,7 +42,10 @@ public class BoardServiceImpl implements BoardService {
 	@Override
 	public void register(BoardVO vo) {
 		// TODO Auto-generated method stub
+		if(vo.getBno()==0)
 		boardMapper.insert(vo);
+		else
+		boardMapper.update(vo);	
 	}
 	
 	
