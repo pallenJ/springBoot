@@ -49,7 +49,7 @@ public class BoardServiceImpl implements BoardService {
 		boardMapper.update(vo);	
 		}
 	}
-
+ 
 	@Override
 	public int remove(int bno) {
 		// TODO Auto-generated method stub
