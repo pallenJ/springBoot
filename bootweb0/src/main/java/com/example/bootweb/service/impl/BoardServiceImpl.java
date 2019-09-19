@@ -44,8 +44,32 @@ public class BoardServiceImpl implements BoardService {
 		// TODO Auto-generated method stub
 		if(vo.getBno()==0)
 		boardMapper.insert(vo);
-		else
+		else {
+		boardMapper.insertHistory(boardMapper.select(vo.getBno()));
 		boardMapper.update(vo);	
+		}
+	}
+
+	@Override
+	public int remove(int bno) {
+		// TODO Auto-generated method stub
+		try {
+			int pageNum = boardMapper.pageNum(bno);
+			BoardVO vo = boardMapper.select(bno);
+			if(boardMapper.delete(bno)==0) throw new Exception();
+			boardMapper.insertHistory(vo);
+			return pageNum;
+		} catch (Exception e) {
+			// TODO: handle exception
+			return -1;
+		}	
+		
+	}
+
+	@Override
+	public List<?> historyList(int bno) {
+		// TODO Auto-generated method stub
+		return boardMapper.getBoardHistory(bno);
 	}
 	
 	

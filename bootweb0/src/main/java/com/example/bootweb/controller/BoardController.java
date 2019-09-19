@@ -1,5 +1,6 @@
 package com.example.bootweb.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.annotation.Resource;
@@ -18,6 +19,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import com.example.bootweb.domain.BoardVO;
 import com.example.bootweb.domain.Criteria;
 import com.example.bootweb.domain.PagingView;
+import com.example.bootweb.mapper.BoardMapper;
 import com.example.bootweb.service.inf.BoardService;
 
 import lombok.extern.slf4j.Slf4j;
@@ -34,6 +36,9 @@ public class BoardController {
 	 */
 	@Resource
 	private BoardService boardService;
+	@Resource
+	private BoardMapper boardMapper;
+	
 	
 	@GetMapping("list")
 	public void list(HttpServletRequest request,Model model) {
@@ -56,9 +61,11 @@ public class BoardController {
 	
 	@GetMapping(value = "/{bno}")
 	public String detail(@PathVariable("bno")int bno, Model model) {
+		List<?> editHistory = boardService.historyList(bno);
 		BoardVO vo = boardService.detail(bno);
 		model.addAttribute("bno", bno);
 		model.addAttribute("board", vo);
+		model.addAttribute("editHistory", editHistory);
 		log.info("vo = "+vo);
 		
 		return "board/detail";
@@ -86,5 +93,13 @@ public class BoardController {
 			return "redirect:/board/list";
 	}
 	
+	@RequestMapping("/remove")
+	public String remove(int bno, Model model) {
+		int pageNum;
+		if((pageNum = boardService.remove(bno))>-1) {
+			return "redirect:/board/list?p="+pageNum;
+		}
+		return "redirect:/";
+	}
 	
 }

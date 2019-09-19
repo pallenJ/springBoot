@@ -12,15 +12,13 @@ String [] themes = new String[]{
 				};	
 pageContext.setAttribute("themes", themes);
 
-pageContext.setAttribute("theme", themes[4]);//21개 테마
+pageContext.setAttribute("theme", themes[14]);//21개 테마
 	
 %>
 <script type="text/javascript">
 </script>
 <div id ="tm-change"></div>
-<script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.js"></script>
-<script src="http://netdna.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.js"></script>
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+
 <link rel="stylesheet" id = "b-css"
 	href="https://bootswatch.com/4/${theme}/bootstrap.css">
 <link rel="stylesheet" id = "b-min-css"
@@ -29,20 +27,11 @@ pageContext.setAttribute("theme", themes[4]);//21개 테마
 	href="https://bootswatch.com/4/${theme}/_variables.scss">
 <link rel="stylesheet" id = "b-scss"
 	href="https://bootswatch.com/4/${theme}/_bootswatch.scss">
-	<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet"/> 
+<!-- jQuery -->	
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-<script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.js"></script>
-<script src="http://netdna.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.js"></script>
-
-
-<!-- <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script> -->
 
 
 
-<!-- include summernote css/js -->
-<link href="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.11/summernote.css" rel="stylesheet">
-<script src="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.11/summernote.js"></script>
-<!-- include summernote-ko-KR -->
 <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
   <a class="navbar-brand" href="#">Navbar</a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
@@ -64,21 +53,18 @@ pageContext.setAttribute("theme", themes[4]);//21개 테마
         <a class="nav-link" href="#">About</a>
       </li>
     </ul>
-    <div class="collapse navbar-collapse">
-    	
-    <%-- 	<select class = "btn btn-outline-info">
-    		<optgroup label="테마">
-    			<c:forEach items = "${themes}" var = "btheme">
-    			<option class = "theme-options" value="${btheme}" id = "a">${btheme}
-    			</c:forEach>
-    		</optgroup>
-    		
-    	
-    	</select> --%>
-    
-    </div>
+  
 
-    
+
+
+    <form class="form-inline my-2 my-lg-0 navbar-right">
+      <input class="form-control mr-sm-2" type="text" placeholder="Search">
+      <button class="btn btn-secondary my-2 my-sm-0" type="submit">Search</button>
+    </form>
+  </div>
+</nav>
+  
+      
     <script type="text/javascript">
     	$(function () {
     		$("select").change(function(){
@@ -96,7 +82,15 @@ pageContext.setAttribute("theme", themes[4]);//21개 테마
     		}) */
 		})
     </script>
-    
+    <!-- CDN -->
+<script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.js"></script>
+<script src="http://netdna.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.js"></script>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"/> 
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+
+<!-- summernote-->
+<link href="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.11/summernote.css" rel="stylesheet">
+<script src="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.11/summernote.js"></script>
     <%
     try{
     session.setAttribute("nowTheme", pageContext.getAttribute("theme"));;
@@ -105,11 +99,7 @@ pageContext.setAttribute("theme", themes[4]);//21개 테마
     }
     
     %>
+    <!-- 개인적으로 쓰는 리소스들 -->
+<script type="text/javascript" src = "/resource/js/util.js"></script>
 
-    <form class="form-inline my-2 my-lg-0">
-      <input class="form-control mr-sm-2" type="text" placeholder="Search">
-      <button class="btn btn-secondary my-2 my-sm-0" type="submit">Search</button>
-    </form>
-  </div>
-</nav>
 

@@ -23,7 +23,17 @@
 					<div class="table-responsive">
 					<div align="left">
 					<form action="/board/register" method="get">
-										<button id = "brd-register" class ="btn btn-success" type="submit"> 새글 </button>
+					<div class="btn-group form-inline" role="group">
+										<button class ="btn btn-success btn-sm border"> 
+										<span  class="glyphicon glyphicon-pencil">  새글</span>
+										
+										</button>
+										
+										
+										
+										
+					</div>
+										
 					</form>
 					</div>
 							

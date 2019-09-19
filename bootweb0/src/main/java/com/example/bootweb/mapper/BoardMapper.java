@@ -13,4 +13,9 @@ public interface BoardMapper {
 	public List<?> listWithPaging(Criteria cri);	
 	public int countAll();
 	public void update(BoardVO vo);
+	public int pageNum(int bno);
+	public int delete(int bno);
+	
+	public void insertHistory(BoardVO vo);
+	public List<?> getBoardHistory(int bno);
  }

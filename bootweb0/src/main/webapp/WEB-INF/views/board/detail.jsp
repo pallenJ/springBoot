@@ -3,12 +3,12 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix='c' uri='http://java.sun.com/jsp/jstl/core'%>
 <%@ taglib prefix='fmt' uri="http://java.sun.com/jsp/jstl/fmt"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %> 
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <%@include file="../include/header.jsp"%>
-
 <title>Board</title>
 </head>
 <body>
@@ -19,16 +19,26 @@
 		<div class="col-lg-12">
 			<div class="panel panel-default">
 				<div class="panel-heading">
-					<div class="btn-group" role="group" aria-label="Basic example">
+					<div class="btn-group form-inline" role="group" aria-label="Basic example">
+					<span class="form-group">
 						Board detail
+					</span>
+
+						
 					</div>
+						<small class = "pull-right text-black-50"> ip:<c:out value="${board.ip_address}"></c:out></small> 
 				</div>
+				
+				<c:if test="${fn:length(editHistory) > 0 }">
+						<small class="btn pull-right text-info" data-toggle= "modal" data-target = "#historyModal"> 수정내역보기</small>
+				</c:if>
+				
 				<!-- /.panel-heading -->
 				
 			
 				<div class="panel-body">
 					<form action="/board/register" method="post" id = "board_form">
-					<div class="form-group" id= "bno_div">
+					<div class="form-group" id= "bno_div" hidden="">
 						<label>Bno</label> <input class="form-control" name="bno"
 							value='<c:out value="${board.bno}"></c:out>' readonly="readonly">
 					</div>
@@ -40,10 +50,10 @@
 					<div class="form-group">
 
 				<div>	
-				<div class="card panel border border-dark">
+				<div id = "content_include_div" class="card panel border border-dark">
 				
-				<div id = "" class = "panel-head border-primary content-div bg-primary">content</div>
-				<div id = "content_div" class = "panel-body border-primary content-div container-fluid"></div>
+				<div id = "content_header_div" class = "panel-head border-primary content-div bg-primary">content</div>
+				<div id = "content_div" class = "panel-body border-primary content-div container-fluid summernote-trs"><c:out value='${board.content}'></c:out></div>
 				
 				</div></div>
 				<input type="hidden" name = "content">
@@ -58,17 +68,17 @@
 					
 					<div id = "detail-pg-btns">
 					<button data-oper="modify" class="btn btn-secondary" id = "brd_modify">Modify</button>
-					<button data-oper="list" class="btn btn-info btn-go" title="list">List</button>
-					<button data-oper="register" class="btn btn-primary btn-go" title ="register">new Post</button>
-					<button data-oper="cancel" class="btn btn-danger btn-go" title = "cancel" id = "cancel_brd_btn">cancel</button>
+					<button data-oper="list" class="btn btn-info btn-go btn-for-detail" title="list">List</button>
+					<button data-oper="register" class="btn btn-primary btn-for-detail btn-go" title ="register">new Post</button>
+					<button data-oper="cancel" class="btn btn-danger btn-go btn-for-edit" title = "remove" id = "remove_brd_btn">remove</button>
+					<button data-oper="cancel" class="btn btn-warning btn-go btn-for-edit" title = "cancel" id = "cancel_brd_btn">cancel</button>
+					<div class="pull-right brd-date-info">
+						<small>작성일자 : <c:out value="${board.regDate}"></c:out></small> <br>
+						<small>최종수정일자 : <c:out value="${board.updateDate}"></c:out></small>
+				
+				</div>
 					</div>
-					
-					<div>
-					
-					
-					
-					</div>
-					
+						
 					<%-- 				<form id = "operForm" action="/board/modify" method="get">
 					<input type="hidden" id = "bno" name ="bno" value ='<c:out value="${board.bno}"></c:out>'>
 					<input type="hidden" id = "pageNum" name ="pageNum" value ='<c:out value="${param.pageNum}"></c:out>'>
@@ -79,6 +89,7 @@
  --%>
 				</div>
 				<!-- /.panel-body -->
+				
 			</div>
 			<!-- /.panel -->
 		</div>
@@ -86,47 +97,60 @@
 	</div>
 
 
-
-
-
-
 </body>
 
-
-	
+<div class="modal fade" id = "historyModal">
+  <div class="modal-dialog modal-lg" role="dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">수정내역</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <jsp:include page="detail_history.jsp"></jsp:include>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
 
 
 <script type="text/javascript">
 $(function () {
-	
-var content = "<c:out value='${board.content}'></c:out>"
-.replace(/&lt;/gi, "<")
-.replace(/&gt;/gi, ">")
-.replace(/&quot;/gi, "\"")
-.replace(/&#034;/gi,"\"")
-.replace(/&#039;/gi,"\'")
-;
 
 
 
-$("#cancel_brd_btn").hide();
+
+$(".btn-for-edit").hide();
 
 //alert(content);
-$("#content_div").html(content);
+//$("#content_div").html(content);
 $("#brd_modify").click(function() {
 	
 	var isDiv = ($("#content_div").prop("class")).indexOf( "content-div")>-1;
 	if(isDiv){
 	$("#content_div").summernote({
-		"code":content,
+		"code":$("#content_div").val(),
 		"display": "none"});
+	
 	$("#content_div").prop("data-toggle", "modal")
 	$("#content_div").prop("data-target", "#modifyModal")
 	$("input[name!='writer']").prop("readonly", false);
+	
 	$("#bno_div").hide();
-	$("#new-brd-btn").hide();
-	$("#cancel_brd_btn").show();
-	$("#content_div").removeClass("content-div")
+	$(".brd-date-info").hide();
+	$(".btn-for-detail").hide();
+	$(".btn-for-edit").show();
+	
+	$("#content_include_div").removeClass();
+	$("#content_header_div").hide();
+	
+	$("#content_div").removeClass("content-div");
+	
 	}else{
 		//$("#board-form").submit();
 		$("#modifyModal").modal();
@@ -137,6 +161,7 @@ $("#brd_modify").click(function() {
 		$("input[name='content']").prop("value",$('#content_div').summernote("code"));
 		$("#board_form").submit();
 	})
+
 	
 });
 
@@ -144,11 +169,15 @@ $("#brd_modify").click(function() {
 $(".btn-go").click(function() {
 	var go_url = $(this).prop("title");
 	if(go_url ==( null || "" ||"cancel")){
-		
-	}
 		location.reload();	
+		
 	return;
+	}else if(go_url.indexOf("remove")>-1&&go_url.indexOf("remove?")==-1){
+		$("#removeModal").modal();
+	}else{
+		
 	$(location).attr("href", $(this).prop("title"));
+	}
 })
 
 

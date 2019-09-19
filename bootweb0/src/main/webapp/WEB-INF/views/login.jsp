@@ -2,78 +2,23 @@
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="ko">
-<style>
-.btn-facebook {
-color: #fff;
-background: #3B5998;
-}
-.btn-github {
-color: #fff;
-background: #000000;
-}
+<link rel="stylesheet" href="/resource/css/custom.css">
 
-.btn-google {
-color: #fff;
-background: #EB0000;
-}
-
-.btn-naver {
-color: #fff;
-background: #2DB400;
-}
-
-.btn-sns{
-	 
-	  border-radius: 10;
-	  border-width: 1px;
-	  border-style: solid;
-	  border-color: #263961; 
-	}
-	/* .btn-facebook:link, .btn-facebook:visited {
-	  color: #fff;
-	}
-	.btn-facebook:active, .btn-facebook:hover {
-	  background: #263961;
-	  color: #fff;
-	} */
-	.btn-circle {
-  width: 30px;
-  height: 30px;
-  text-align: center;
-  padding: 6px 0;
-  font-size: 12px;
-  line-height: 1.42;
-  border-radius: 15px;
-}
-	.btn-circle-lg {
-  width: 40px;
-  height: 40px;
-  text-align: center;
-  font-size: 12px;
-  line-height: 1.42;
-  border-radius: 90%;
-}
-
-</style>
 
   <fieldset>
-  <legend id = "sns_login" class = "btn btn-lg btn-outline-dark">SNS로 로그인</legend>
+  <legend id = "login_leg" class = "btn btn-lg btn-outline-dark">로그인</legend>
 
-<form id = "sns_form">
   <div class = "form-group">
-  <div align="center"> 
-		<button title="Facebook" class="btn btn-circle btn-facebook"><i class="fa fa-facebook fa-lg"></i> </button> &nbsp;
-		<button  title="Google" class="btn btn-circle btn-google"><i class="fa fa-google fa-lg"></i> </button> &nbsp;
-		<button  title="Naver" class="btn btn-circle btn-naver"><span style="font-size: 100%">N</span></button> &nbsp;
-		<button  title="GitHub" class="btn btn-circle btn-github"><i class="fa fa-github fa-lg"></i> </button> &nbsp;
+  <div align="center" id = "sns_form"> 
+		<button  title="Google" class="btn btn-circle btn-google"><span class="fa fa-google fa-lg"></span> </button> &nbsp;
+		<button  title="Naver" class="btn btn-circle btn-naver"><span class="fa fa-naver fa-lg font-weight-bold">N</span> </button> &nbsp;
+		<button title="Facebook" class="btn btn-circle btn-facebook"><span class="fa fa-facebook fa-lg"></span> </button> &nbsp;
+		<button  title="twitter" class="btn btn-circle btn-twitter"><span class = "fa fa-twitter fa-lg"></span></button> &nbsp;
+		<button  title="GitHub" class="btn btn-circle btn-github"><span class="fa fa-github fa-lg"></span> </button> &nbsp;
+		<button  title="email" class="btn btn-circle btn-secondary"><span class="fa fa-envelope fa-lg" id = "email_login"></span> </button> &nbsp;
 	</div>
   </div>
-</form>  
-
-	<hr>
-  <legend id = "email_login" class = "btn btn-lg btn-outline-dark">이메일로 로그인</legend>
-<div id = "email_form">
-<form>
+  <div id = "email_form" class = "">
 	<div>
     <div class="form-group">
       <label for="exampleInputEmail1">Email address</label>
@@ -85,13 +30,17 @@ background: #2DB400;
       <input type="password" class="form-control" id="login_pw" placeholder="Password">
     </div>
 	</div>
-</form>
 
    
 <div align="right">
         <button type="button" class="btn btn-primary btn-modal-save" id= "login_submit">login</button>
 </div>
 </div>
+<form >
+</form>  
+
+	<hr>
+
 
   </fieldset>
   <br>
@@ -103,14 +52,16 @@ background: #2DB400;
  $(function () {
 		$("#email_form").hide();
 		$("#sns_form").show();
-	$("#sns_login").click(function() {
+	$("#login_leg").click(function() {
 		$("#email_form").hide();
 		$("#sns_form").show();
+		$("#login_leg").text("로그인")
 	})
 	
 	$("#email_login").click(function() {
 		$("#sns_form").hide();
 		$("#email_form").show();
+		$("#login_leg").text("sns로 로그인")
 	})
 	
 	

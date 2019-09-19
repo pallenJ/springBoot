@@ -22,7 +22,7 @@ SELECT * FROM tbl_board
 
 <select id="listWithPaging" resultType="com.example.bootweb.domain.BoardVO" parameterType="com.example.bootweb.domain.Criteria">
 <include refid="forSelect"/>
-ORDER BY A.updatedate DESC, bno DESC
+ORDER BY A.bno DESC
 LIMIT #{limit},#{amount}
 </select>
 
@@ -31,11 +31,33 @@ SELECT COUNT(*) FROM tbl_board;
 </select>
 
 <select id="select" parameterType="int" resultType="com.example.bootweb.domain.BoardVO">
+
 <include refid="forSelect"/>
 WHERE bno = #{bno}
 </select>
 
+<delete id="delete" parameterType="int">
+DELETE FROM tbl_board WHERE bno = #{bno}
+</delete>
 
+
+<select id="pageNum" parameterType="int" resultType = "int">
+
+SELECT TRUNCATE(C.num/10,0)+1 AS pageNum from (SELECT 
+    @num:=@num+1 as num,
+    B.bno
+    FROM (SELECT @num:=0) A, tbl_board B ORDER BY bno DESC) C  WHERE C.bno = #{bno}
+</select>
+
+<insert id="insertHistory"  parameterType="com.example.bootweb.domain.BoardVO">
+INSERT INTO tbl_board_history  
+(bno,title,writer,content,ip_address) VALUES (#{bno},#{title},#{writer},#{content},#{ip_address})
+
+</insert>
+
+<select id="getBoardHistory" resultType="com.example.bootweb.domain.BoardVO" parameterType="int">
+<include refid="forSelectHis"/>WHERE A.bno = #{bno} ORDER BY hbno DESC
+</select>
 
 <sql id="forSelect">
 SELECT 
@@ -50,7 +72,14 @@ TIMESTAMPDIFF(DAY,DATE_FORMAT(A.regdate,'%Y-%m-%d'),DATE_FORMAT(NOW(),'%Y-%m-%d'
 if(
 TIMESTAMPDIFF(DAY,DATE_FORMAT(A.updateDate,'%Y-%m-%d'),DATE_FORMAT(NOW(),'%Y-%m-%d'))>0
 ,DATE_FORMAT(A.updateDate,'%Y-%m-%d') , DATE_FORMAT(A.updateDate,'%H:%i')) AS updatedate
+,A.ip_address AS ip_address
  FROM tbl_board A
+
+</sql>
+<sql id="forSelectHis">
+SELECT
+A.*
+ FROM tbl_board_history A
 
 </sql>
 

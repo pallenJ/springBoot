@@ -36,7 +36,7 @@
 	
 
 					<div class="form-group">
-						<label>Title</label> <input class="form-control" name="title">
+						<label>Title</label> <input class="form-control" name="title" required="required">
 					</div>
 					<div class="form-group">
 
@@ -47,7 +47,7 @@
 					</div>
 
 					<div class="form-group">
-						<label>Writer</label> <input class="form-control" name="writer">
+						<label>Writer</label> <input class="form-control" name="writer" required="required">
 					</div>
 
 					

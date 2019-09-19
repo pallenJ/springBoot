@@ -1,3 +1,5 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
 
 <div class="modal fade" id = "myModal">
@@ -20,21 +22,41 @@
   </div>
 </div>
 
-<div class="modal fade" id = "${modal_name}Modal">
+<div class="modal fade" id = "modifyModal">
   <div class="modal-dialog" role="dialog">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title">${modal_name}</h5>
+        <h5 class="modal-title">modify</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
       <div class="modal-body">
-        <p>${modal_msg}</p>
+        <p>정말 수정하시겠습니까?</p>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-primary btn-modal-save" id= "${modal_name}_save">Save changes</button>
+        <button type="button" class="btn btn-primary btn-modal-save" id= "modify_save">Save changes</button>
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id = "removeModal">
+  <div class="modal-dialog" role="dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">remove</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <p>정말 삭제하시겠습니까?</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-danger btn-go" title="remove?bno=${board.bno}" id= "remove_save">YES</button>
+        <button type="button" class="btn btn-warning" data-dismiss="modal">NO</button>
       </div>
     </div>
   </div>

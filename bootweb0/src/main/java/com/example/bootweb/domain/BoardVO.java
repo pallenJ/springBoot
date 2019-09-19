@@ -1,19 +1,17 @@
 package com.example.bootweb.domain;
 
-import java.util.Date;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
-import lombok.Getter;
 import lombok.NoArgsConstructor;
-import lombok.Setter;
-import lombok.ToString;
+
 
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
 public class BoardVO {
 	
+	private int ebno;//수정내역용
 	private int bno;
 	private String title;
 	private String writer;
