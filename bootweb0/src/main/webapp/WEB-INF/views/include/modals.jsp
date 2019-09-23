@@ -66,15 +66,15 @@
   <div class="modal-dialog" role="dialog">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title">수정내역</h5>
+        <h5 class="modal-title">비밀번호</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
       <div class="modal-body form-group">
         <div class= "form-inline">
-        <input type="password" class="form-control">
-        <button class="btn btn-success form-control">입력</button>
+        <input type="password" class="form-control" id= "modalPWCheck">
+        <button class="btn btn-success form-control" id = "passwordSubmit">입력</button>
         </div>
       </div>
       <div class="modal-footer">

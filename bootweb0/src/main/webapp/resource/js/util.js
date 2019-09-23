@@ -12,7 +12,7 @@ $(function () {
 		$(this).html(content);	
 	}); //summernote에 html로 쓰인 내용의 변환을 되돌리기 위한것.	
 	
-	 $("input[type=password]").on("change keyup paste", function() {
+	 $(".pw-form-custom").on("change keyup paste", function() {
 		    var pw_eq = $("#brd_pw").val() == $("#brd_pw_ck").val();
 		    var pw_length = $(this).val().length >=4;
 		    var pw_ck = pw_eq && pw_length;

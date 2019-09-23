@@ -141,15 +141,19 @@ $("#brd_modify").click(function() {
 	
 	var isDiv = ($("#content_div").prop("class")).indexOf( "content-div")>-1;
 	if(isDiv){
-		/* $("#passwordModal").modal();
-		return; */
-		modifyActive();
-	
+		$("#passwordModal").modal();
 	}else{
 		//$("#board-form").submit();
 		$("#modifyModal").modal();
 		
 	}
+	
+	$("#passwordSubmit").click(function() {
+		var insertPW = $("#modalPWCheck").val();
+		if(insertPW!=''&&'${board.password}')
+		return;
+		modifyActive();
+	})
 	
 	$(".btn-modal-save").click(function() {
 		$("input[name='content']").prop("value",$('#content_div').summernote("code"));
@@ -161,6 +165,7 @@ $("#brd_modify").click(function() {
 });
 
 function modifyActive() {
+	$("#passwordModal").modal("hide");
 	$("#content_div").summernote({
 		"code":$("#content_div").val(),
 		"display": "none"});

@@ -36,21 +36,21 @@
 	
 
 					<div class="form-group">
-						<label>Title</label> <input class="form-control" name="title" required="required">
+						<label>Title</label> <input class="form-control brd-item" name="title" required="required">
 					</div>
 					<div class="form-group">
 
 						<label>TextArea</label>
-						<textarea id="summernote" name = "content"></textarea>
+						<textarea id="summernote" class="brd-item" name = "content"></textarea>
 				<div>
 				</div>
 					</div>
 
 					<div class="form-group">
-						<label>Writer</label> <input class="form-control" name="writer" required="required">
+						<label>Writer</label> <input class="form-control brd-item" name="writer" required="required">
 					</div>
 
-					
+					<jsp:include page="forms/pw_form.jsp"></jsp:include>
 					
 </form>
 					<button data-oper="new" class="btn btn-primary" id= "board-submit">submit</button>
@@ -80,6 +80,18 @@ $(function() {
 	  });
 	  
 	  $("#board-submit").click(function() {
+		var need = [];
+		  $(".brd-item").each(function(i, element) {
+			  var bValue = $(this).val();
+
+		  		if(bValue == null || bValue == ''){
+		  			need.push($(this).prop("name"));
+		  		}
+		  });
+	  	if(need.length>0){
+	  		alert(need+"를 입력해주세요")
+	  		return;
+	  	}
 	  	alert($('#summernote').summernote("code"));
 	  	$("#board-form").submit();
 	  });
