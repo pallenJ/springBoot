@@ -63,7 +63,7 @@
 </div>
 
 <div class="modal fade" id = "passwordModal">
-  <div class="modal-dialog" role="dialog">
+  <div class="modal-dialog modal-sm" role="dialog">
     <div class="modal-content">
       <div class="modal-header">
         <h5 class="modal-title">비밀번호</h5>
@@ -75,6 +75,7 @@
         <div class= "form-inline">
         <input type="password" class="form-control" id= "modalPWCheck">
         <button class="btn btn-success form-control" id = "passwordSubmit">입력</button>
+	      <div class="invalid-feedback">비밀번호가 일치하지 않습니다</div>
         </div>
       </div>
       <div class="modal-footer">

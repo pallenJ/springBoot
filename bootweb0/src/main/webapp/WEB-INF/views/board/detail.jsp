@@ -150,8 +150,12 @@ $("#brd_modify").click(function() {
 	
 	$("#passwordSubmit").click(function() {
 		var insertPW = $("#modalPWCheck").val();
-		if(insertPW!=''&&'${board.password}')
+		if(insertPW!=''&&insertPW!='${board.password}'){
+			$("input[type=password]").parent("div").addClass("has-danger");
+			$("input[type=password]").addClass("is-invalid");
+			$("#modalPWCheck").addClass("has-danger")			
 		return;
+		}
 		modifyActive();
 	})
 	

@@ -14,7 +14,7 @@ public class PagingView extends Criteria{
 	protected int endPage;
 	protected boolean prev, next;
 	private final int showPages = 10;
-	protected int first = 1;
+	protected int first = 1; 
 	protected int last; 
 	
 	protected int nfirst = 1;

@@ -3,13 +3,14 @@
 <!DOCTYPE html>
 <html lang="ko">
 
-
-
+<!-- <script src="https://apis.google.com/js/platform.js" async defer></script>
+<meta name="google-signin-client_id" content="134117933681-b7itj3i408ntkkfpofkjp5chl72v0322.apps.googleusercontent.com"> -->
   <fieldset>
   <legend id = "login_leg" class = "btn btn-lg btn-outline-dark">로그인</legend>
 
   <div class = "form-group">
   <div align="center" id = "sns_form"> 
+  		<!-- <div class="g-signin2" data-onsuccess="onSignIn"></div> -->
 		<button  title="Google" class="btn btn-circle btn-google"><span class="fa fa-google fa-lg"></span> </button> &nbsp;
 		<button  title="Naver" class="btn btn-circle btn-naver"><span class="fa fa-naver fa-lg font-weight-bold">N</span> </button> &nbsp;
 		<button title="Facebook" class="btn btn-circle btn-facebook"><span class="fa fa-facebook fa-lg"></span> </button> &nbsp;
