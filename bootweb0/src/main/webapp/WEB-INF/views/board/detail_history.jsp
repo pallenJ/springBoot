@@ -6,7 +6,7 @@
 
 	<h2>작성일자 : <c:out value="${board.regDate}"></c:out></h2> <hr>
 	<div class="row container">
-		<div class="col-lg-8">
+		<div class="col-lg-10">
 			<div class="panel panel-default">
 				<div class="panel-heading">
 					<div class="btn-group form-inline" role="group" aria-label="Basic example">
@@ -23,7 +23,6 @@
 				
 			
 				<div class="panel-body">
-					<form action="/board/register" method="post" id = "board_form">
 					<div class="form-group" id= "bno_div" hidden="">
 						<label>Bno</label> <input class="form-control" name="bno"
 							value='<c:out value="${board.bno}"></c:out>' readonly="readonly">
@@ -45,7 +44,6 @@
 				<input type="hidden" name = "content">
 					</div>
 				
-					</form>
 					<div class="form-group">
 						<label>Writer</label> <input class="form-control" name="writer"
 							value='<c:out value="${board.writer}"></c:out>'

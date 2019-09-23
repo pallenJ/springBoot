@@ -18,7 +18,7 @@
 <link href="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.11/summernote.css" rel="stylesheet">
 <script src="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.11/summernote.js"></script>
 <!-- include summernote-ko-KR -->
-<script src="lang/summernote-ko-KR.js"></script>
+<!-- <script src="lang/summernote-ko-KR.js"></script> -->
 </head>
 <body>
 	<%-- <h1>${bno}</h1> --%>
@@ -54,7 +54,7 @@
 					
 </form>
 					<button data-oper="new" class="btn btn-primary" id= "board-submit">submit</button>
-					<button data-oper="list" class="btn btn-danger">cancel</button>
+					<button data-oper="list" class="btn btn-danger" onclick="history.back();">cancel</button>
 					<%-- 				<form id = "operForm" action="/board/modify" method="get">
 					<input type="hidden" id = "bno" name ="bno" value ='<c:out value="${board.bno}"></c:out>'>
 					<input type="hidden" id = "pageNum" name ="pageNum" value ='<c:out value="${param.pageNum}"></c:out>'>

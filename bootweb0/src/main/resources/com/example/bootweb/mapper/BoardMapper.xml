@@ -5,7 +5,7 @@
 <insert id="insert" parameterType="com.example.bootweb.domain.BoardVO">
 
 INSERT INTO tbl_board  
-(title,writer,content,ip_address) VALUES (#{title},#{writer},#{content},#{ip_address})
+(title,writer,content,ip_address,password) VALUES (#{title},#{writer},#{content},#{ip_address},#{password})
 
 </insert>
 
@@ -63,8 +63,8 @@ UPDATE tbl_board A SET A.state = 'DELETED' WHERE A.bno = #{bno}
 
 <insert id="insertHistory"  parameterType="com.example.bootweb.domain.BoardVO">
 INSERT INTO tbl_board_history
-(bno,title,writer,content,regDate,ip_address) 
-SELECT bno,title,writer,content,updateDate,ip_address FROM tbl_board B WHERE bno = #{bno}
+(bno,title,writer,content,regDate,ip_address,password) 
+SELECT bno,title,writer,content,updateDate,ip_address,password FROM tbl_board B WHERE bno = #{bno}
 </insert>
 
 

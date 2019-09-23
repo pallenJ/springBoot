@@ -20,6 +20,7 @@ public class BoardVO {
 	private String updateDate;
 	private String ip_address;
 	private String state = "NORMAL";
+	private String password;
 	public BoardVO(String title, String writer, String content) {
 		super();
 		this.title = title;

@@ -123,10 +123,13 @@
 <script type="text/javascript">
 $(function () {
 
+	
+	
 if("${board.state}"=="DELETED"){
 	alert("삭제된 게시물 입니다")
 	history.back();
 }
+
 
 
 $(".btn-for-edit").hide();
@@ -135,8 +138,29 @@ $(".btn-for-edit").hide();
 //$("#content_div").html(content);
 $("#brd_modify").click(function() {
 	
+	
 	var isDiv = ($("#content_div").prop("class")).indexOf( "content-div")>-1;
 	if(isDiv){
+		/* $("#passwordModal").modal();
+		return; */
+		modifyActive();
+	
+	}else{
+		//$("#board-form").submit();
+		$("#modifyModal").modal();
+		
+	}
+	
+	$(".btn-modal-save").click(function() {
+		$("input[name='content']").prop("value",$('#content_div').summernote("code"));
+		$("#board_form").submit();
+	})
+
+	
+	
+});
+
+function modifyActive() {
 	$("#content_div").summernote({
 		"code":$("#content_div").val(),
 		"display": "none"});
@@ -154,20 +178,7 @@ $("#brd_modify").click(function() {
 	$("#content_header_div").hide();
 	
 	$("#content_div").removeClass("content-div");
-	
-	}else{
-		//$("#board-form").submit();
-		$("#modifyModal").modal();
-		
-	}
-	
-	$(".btn-modal-save").click(function() {
-		$("input[name='content']").prop("value",$('#content_div').summernote("code"));
-		$("#board_form").submit();
-	})
-
-	
-});
+}
 
 
 $(".btn-go").click(function() {
