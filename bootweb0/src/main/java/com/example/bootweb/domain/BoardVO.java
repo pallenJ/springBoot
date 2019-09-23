@@ -19,6 +19,7 @@ public class BoardVO {
 	private String regDate;
 	private String updateDate;
 	private String ip_address;
+	private String state = "NORMAL";
 	public BoardVO(String title, String writer, String content) {
 		super();
 		this.title = title;

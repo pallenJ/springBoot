@@ -45,8 +45,8 @@ public class BoardServiceImpl implements BoardService {
 		if(vo.getBno()==0)
 		boardMapper.insert(vo);
 		else {
-		boardMapper.insertHistory(boardMapper.select(vo.getBno()));
-		boardMapper.update(vo);	
+		boardMapper.insertHistory(vo.getBno());
+		boardMapper.update(vo);	 
 		}
 	}
  
@@ -55,9 +55,24 @@ public class BoardServiceImpl implements BoardService {
 		// TODO Auto-generated method stub
 		try {
 			int pageNum = boardMapper.pageNum(bno);
-			BoardVO vo = boardMapper.select(bno);
-			if(boardMapper.delete(bno)==0) throw new Exception();
-			boardMapper.insertHistory(vo);
+			boardMapper.insertHistory(bno);
+			boardMapper.updatehisDel(bno);
+			return pageNum;
+		} catch (Exception e) {
+			// TODO: handle exception
+			return -1;
+		}	
+		
+	}
+	
+	@Override
+	public int removeAdmin(int bno) {
+		// TODO Auto-generated method stub
+		try {
+			  int pageNum = boardMapper.pageNum(bno);
+			  BoardVO vo = boardMapper.select(bno); 
+			  if(boardMapper.delete(bno)==0) throw
+			  new Exception(); boardMapper.insertHistory(vo.getBno());
 			return pageNum;
 		} catch (Exception e) {
 			// TODO: handle exception

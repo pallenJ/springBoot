@@ -6,7 +6,7 @@
 
 	<h2>작성일자 : <c:out value="${board.regDate}"></c:out></h2> <hr>
 	<div class="row container">
-		<div class="col-lg-10">
+		<div class="col-lg-8">
 			<div class="panel panel-default">
 				<div class="panel-heading">
 					<div class="btn-group form-inline" role="group" aria-label="Basic example">

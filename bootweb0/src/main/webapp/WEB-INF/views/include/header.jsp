@@ -12,7 +12,7 @@ String [] themes = new String[]{
 				};	
 pageContext.setAttribute("themes", themes);
 
-pageContext.setAttribute("theme", themes[14]);//21개 테마
+pageContext.setAttribute("theme", themes[4]);//21개 테마
 	
 %>
 <script type="text/javascript">
@@ -101,5 +101,6 @@ pageContext.setAttribute("theme", themes[14]);//21개 테마
     %>
     <!-- 개인적으로 쓰는 리소스들 -->
 <script type="text/javascript" src = "/resource/js/util.js"></script>
-
-
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+<%@include file="../include/modals.jsp"%>
+<link rel="stylesheet" href="/resource/css/custom.css">

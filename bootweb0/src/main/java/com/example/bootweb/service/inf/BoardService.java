@@ -15,4 +15,7 @@ public interface BoardService {
 	public int remove(int bno);
 	
 	public List<?> historyList(int bno);
+	
+	
+	int removeAdmin(int bno);
 }

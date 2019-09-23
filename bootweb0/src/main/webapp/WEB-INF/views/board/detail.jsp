@@ -29,7 +29,8 @@
 						<small class = "pull-right text-black-50"> ip:<c:out value="${board.ip_address}"></c:out></small> 
 				</div>
 				
-				<c:if test="${fn:length(editHistory) > 0 }">
+<%-- 				<c:if test="${fn:length(editHistory) > 0 }"> --%>
+				<c:if test="${board.state eq 'UPDATED' }">
 						<small class="btn pull-right text-info" data-toggle= "modal" data-target = "#historyModal"> 수정내역보기</small>
 				</c:if>
 				
@@ -122,7 +123,10 @@
 <script type="text/javascript">
 $(function () {
 
-
+if("${board.state}"=="DELETED"){
+	alert("삭제된 게시물 입니다")
+	history.back();
+}
 
 
 $(".btn-for-edit").hide();
@@ -188,5 +192,5 @@ $(".btn-go").click(function() {
 </script>
 
 
-<%@include file="../include/modals.jsp"%>
+
 </html>

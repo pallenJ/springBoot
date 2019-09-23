@@ -2,7 +2,7 @@
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="ko">
-<link rel="stylesheet" href="/resource/css/custom.css">
+
 
 
   <fieldset>

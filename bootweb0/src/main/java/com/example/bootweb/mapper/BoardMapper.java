@@ -16,6 +16,11 @@ public interface BoardMapper {
 	public int pageNum(int bno);
 	public int delete(int bno);
 	
-	public void insertHistory(BoardVO vo);
+	public void insertHistory(int bno);
+	
+	
 	public List<?> getBoardHistory(int bno);
+	public void updatehisDel(int bno);
+	
+	
  }
