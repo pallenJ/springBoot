@@ -11,6 +11,7 @@ public class Criteria {
 	protected int pageNum;
 	protected int amount;
 	protected int limit;
+	private @Setter String state = "NORMAL";
 	
 	public Criteria(int pageNum, int amount) {
 		this.pageNum = pageNum;
@@ -21,6 +22,19 @@ public class Criteria {
 		this.pageNum = pageNum;
 		this.amount = amount;
 		this.max=max;
+		setLimit();
+	}
+	public Criteria(int pageNum, int amount,String state) {
+		this.pageNum = pageNum;
+		this.amount = amount;
+		this.state =state;
+		setLimit();
+	}
+	public Criteria(int pageNum, int amount, int max,String state) {
+		this.pageNum = pageNum;
+		this.amount = amount;
+		this.max=max;
+		this.state =state;
 		setLimit();
 	}
 	

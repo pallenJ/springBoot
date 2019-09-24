@@ -74,5 +74,12 @@ public class BoardController {
 		return "redirect:/board/list";
 	}
 	
+	  @GetMapping(value = "/remove") 
+	  public String remove(int bno,Model model) { 
+		  boardService.remove(bno);
+		  return "redirect:/board/list";
+	}
+	 
+	
 	
 }

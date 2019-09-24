@@ -22,5 +22,6 @@ public interface BoardMapper {
 	public List<?> getBoardHistory(int bno);
 	public void updatehisDel(int bno);
 	
-	
+	public int stateCnt(String state);
+	public List<?> stateList(Criteria cri);
  }

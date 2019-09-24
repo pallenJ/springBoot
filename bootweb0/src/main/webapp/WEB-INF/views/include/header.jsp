@@ -44,12 +44,21 @@ pageContext.setAttribute("theme", themes[4]);//21개 테마
         <a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
       </li>
       <li class="nav-item">
+      
         <a class="nav-link" href="#" data-toggle = "modal" data-target="#loginModal" id = "login_a">로그인</a>
       </li>
-      <li class="nav-item">
-        <a class="nav-link" href="#">Pricing</a>
-      </li>
-      <li class="nav-item">
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="admin_menu" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          관리자 메뉴
+        </a>
+        <div class="dropdown-menu" aria-labelledby="admin_menu">
+          <a class="dropdown-item h5" href="#">게시글</a><div class="dropdown-divider"></div>
+          <a class="dropdown-item" href="/board/admin/deletedList">삭제 게시글</a>
+          <a class="dropdown-item" href="/board/admin/updatedList">수정 게시글</a>
+          <a class="dropdown-item" href="/board/admin/normalList">일반 게시글</a>
+         
+        </div>
+      </li>      <li class="nav-item">
         <a class="nav-link" href="#">About</a>
       </li>
     </ul>

@@ -86,6 +86,19 @@ public class BoardServiceImpl implements BoardService {
 		// TODO Auto-generated method stub
 		return boardMapper.getBoardHistory(bno);
 	}
+
+	@Override
+	public List<?> stateList(Criteria cri, String state) {
+		// TODO Auto-generated method stub
+		cri.setState(state);
+		return boardMapper.stateList(cri);
+	}
+
+	@Override
+	public int stateCnt(String state) {
+		// TODO Auto-generated method stub
+		return boardMapper.stateCnt(state);
+	}
 	
 	
 }

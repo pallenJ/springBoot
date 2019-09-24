@@ -15,6 +15,8 @@ AUTO_INCREMENT=0
 ;
 
 
+
+
 CREATE TABLE `tbl_board_history` (
 	`hbno` INT(11) NOT NULL AUTO_INCREMENT,
 	`bno` INT(11) NOT NULL DEFAULT '0',

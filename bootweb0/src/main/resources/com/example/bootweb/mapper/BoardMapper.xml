@@ -47,6 +47,18 @@ WHERE bno = #{bno}
 
 
 
+<select id="stateList" resultType="com.example.bootweb.domain.BoardVO" parameterType="com.example.bootweb.domain.Criteria">
+<include refid="forSelect"/>
+
+WHERE A.state = #{state}
+ORDER BY A.updateDate DESC ,A.bno DESC
+LIMIT #{limit},#{amount}
+
+</select>
+
+<select id="stateCnt" resultType="int">
+SELECT COUNT(*) FROM tbl_board WHERE state = #{state};
+</select>
 
 <select id="pageNum" parameterType="int" resultType = "int">
 

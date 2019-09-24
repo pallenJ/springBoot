@@ -17,5 +17,9 @@ public interface BoardService {
 	public List<?> historyList(int bno);
 	
 	
-	int removeAdmin(int bno);
+	public int removeAdmin(int bno);
+	
+	public int stateCnt(String state);
+	public List<?> stateList(Criteria cri, String state);
+	
 }
