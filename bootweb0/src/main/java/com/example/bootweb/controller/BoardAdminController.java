@@ -21,8 +21,11 @@ import lombok.extern.slf4j.Slf4j;
 @RequestMapping("/board/admin/*")
 @Controller
 public class BoardAdminController {
+	
 	@Resource
 	private BoardService boardService;
+	
+	
 	
 	@GetMapping("{state}List")
 	public String stateList(@PathVariable("state")String state, Model model, HttpServletRequest request) {

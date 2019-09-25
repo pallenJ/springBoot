@@ -15,8 +15,8 @@
 	<%-- <h1>${bno}</h1> --%>
 	<c:set var = "modal_name" value="modify"></c:set>
 	<c:set var = "modal_msg" value="정말 수정하시겠습니까?"></c:set>
-	<div class="row container">
-		<div class="col-lg-12">
+	<div class="container">
+		<div class="card">
 			<div class="panel panel-default">
 				<div class="panel-heading">
 					<div class="btn-group form-inline" role="group" aria-label="Basic example">
@@ -68,10 +68,10 @@
 					</div>
 					
 					<div id = "detail-pg-btns">
-					<button data-oper="modify" class="btn btn-secondary" id = "brd_modify">Modify</button>
-					<button data-oper="list" class="btn btn-info btn-go btn-for-detail" title="list">List</button>
-					<button data-oper="register" class="btn btn-primary btn-for-detail btn-go" title ="register">new Post</button>
-					<button data-oper="cancel" class="btn btn-danger btn-go btn-for-edit" title = "remove" id = "remove_brd_btn">remove</button>
+					<button data-oper="modify" class="btn btn-secondary active" id = "brd_modify"><i class="fa fas fa-edit active"></i> Modify </button>
+					<button data-oper="list" class="btn btn-info btn-go btn-for-detail" title="list"><i class="fa fas fa-clipboard"></i> List</button>
+					<button data-oper="register" class="btn btn-primary btn-for-detail btn-go" title ="register"><i class="fa fas fa-pencil"></i> new Post</button>
+					<button data-oper="cancel" class="btn btn-danger btn-go btn-for-edit" title = "remove" id = "remove_brd_btn"><i class = "fa fa-trash"></i> remove</button>
 					<button data-oper="cancel" class="btn btn-warning btn-go btn-for-edit" title = "cancel" id = "cancel_brd_btn">cancel</button>
 					<div class="pull-right brd-date-info">
 						<small>작성일자 : <c:out value="${board.regDate}"></c:out></small> <br>
@@ -141,7 +141,8 @@ $("#brd_modify").click(function() {
 	
 	var isDiv = ($("#content_div").prop("class")).indexOf( "content-div")>-1;
 	if(isDiv){
-		$("#passwordModal").modal();
+		//$("#passwordModal").modal();
+		modifyActive();
 	}else{
 		//$("#board-form").submit();
 		$("#modifyModal").modal();

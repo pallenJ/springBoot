@@ -1,6 +1,8 @@
 package com.example.bootweb.controller;
 
+import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -11,6 +13,9 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 @Controller
 public class HomeController {
+	
+	@Resource
+	HttpSession session;
 	
 	@GetMapping("/")
 	public String home() {
