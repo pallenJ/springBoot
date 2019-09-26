@@ -13,8 +13,8 @@
 <body>
 
 
-	<div class="container">
-		<div class="card">
+	<div class="row" align="center">
+		<div class="col-lg-12">
 			<div class="panel panel-default panel-bordered">
 				<div class="panel-heading">Board List Page</div>
 				<!-- /.panel-heading -->
@@ -24,7 +24,7 @@
 					<form action="/board/register" method="get">
 					<div class="btn-group form-inline" role="group">
 										<button class ="btn btn-success btn-sm border"> 
-										<span  class="glyphicon glyphicon-pencil">  새글</span>
+										<span  class="fa fa-pencil">  새글</span>
 										
 										</button>
 										

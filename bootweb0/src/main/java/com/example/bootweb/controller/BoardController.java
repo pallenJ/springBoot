@@ -59,7 +59,10 @@ public class BoardController {
 		BoardVO vo = boardService.detail(bno);
 		model.addAttribute("bno", bno);
 		model.addAttribute("board", vo);
+		model.addAttribute("editHistory", boardService.historyList(bno));
+		
 		log.info("vo = "+vo);
+		log.info("edit = "+boardService.historyList(bno));
 		
 		return "board/detail";
 	}
@@ -79,7 +82,8 @@ public class BoardController {
 		  boardService.remove(bno);
 		  return "redirect:/board/list";
 	}
-	 
+	 	
+	  
 	
 	
 }

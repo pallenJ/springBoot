@@ -68,7 +68,8 @@
 					</div>
 					
 					<div id = "detail-pg-btns">
-					<button data-oper="modify" class="btn btn-secondary active" id = "brd_modify"><i class="fa fas fa-edit active"></i> Modify </button>
+					          
+					<button data-oper="modify" class="btn btn-secondary btn-icon-split" id = "brd_modify"><span class="fa fas fa-edit active"></span> <span>Modify</span> </button>
 					<button data-oper="list" class="btn btn-info btn-go btn-for-detail" title="list"><i class="fa fas fa-clipboard"></i> List</button>
 					<button data-oper="register" class="btn btn-primary btn-for-detail btn-go" title ="register"><i class="fa fas fa-pencil"></i> new Post</button>
 					<button data-oper="cancel" class="btn btn-danger btn-go btn-for-edit" title = "remove" id = "remove_brd_btn"><i class = "fa fa-trash"></i> remove</button>
@@ -170,7 +171,7 @@ $("#brd_modify").click(function() {
 });
 
 function modifyActive() {
-	$("#passwordModal").modal("hide");
+	$("#passwordModal").hide();
 	$("#content_div").summernote({
 		"code":$("#content_div").val(),
 		"display": "none"});
