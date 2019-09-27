@@ -6,7 +6,7 @@
 <!-- <script src="https://apis.google.com/js/platform.js" async defer></script>
 <meta name="google-signin-client_id" content="134117933681-b7itj3i408ntkkfpofkjp5chl72v0322.apps.googleusercontent.com"> -->
   <fieldset>
-  <legend id = "login_leg" class = "btn btn-lg btn-outline-dark">로그인</legend>
+  <legend id = "login_leg" class = "btn btn-lg btn-default text-default">로그인</legend>
 
   <div class = "form-group">
   <div align="center" id = "sns_form"> 
@@ -57,12 +57,14 @@
 		$("#email_form").hide();
 		$("#sns_form").show();
 		$("#login_leg").text("로그인")
+		$(this).removeClass("btn-info")
 	})
 	
 	$("#email_login").click(function() {
 		$("#sns_form").hide();
 		$("#email_form").show();
 		$("#login_leg").text("sns로 로그인")
+		$("#login_leg").addClass("btn-info")
 	})
 	
 	

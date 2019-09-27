@@ -35,7 +35,7 @@
 					<div class="form-group">
 
 				<div>	
-				<div class="card panel border border-dark">
+				<div class="card panel border">
 				
 				<div  class = "panel-head border-primary content-div bg-primary">content</div>
 				<div  class = "panel-body border-primary content-div container-fluid">${board.content}</div>

@@ -142,8 +142,8 @@ $("#brd_modify").click(function() {
 	
 	var isDiv = ($("#content_div").prop("class")).indexOf( "content-div")>-1;
 	if(isDiv){
-		//$("#passwordModal").modal();
-		modifyActive();
+		$("#passwordModal").modal();
+		//modifyActive();
 	}else{
 		//$("#board-form").submit();
 		$("#modifyModal").modal();
@@ -171,7 +171,8 @@ $("#brd_modify").click(function() {
 });
 
 function modifyActive() {
-	$("#passwordModal").hide();
+	$("#passwordModal").modal("hide")
+	
 	$("#content_div").summernote({
 		"code":$("#content_div").val(),
 		"height": 300,

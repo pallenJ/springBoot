@@ -15,7 +15,7 @@
 	pageContext.setAttribute("theme", session.getAttribute("designTheme"));//21개 테마
 %>
 <script type="text/javascript">
-//	alert("${theme}")
+	
 </script>
 <div id="tm-change"></div>
 
@@ -53,13 +53,13 @@
 				aria-expanded="false"> 관리자 메뉴 </a>
 				<div class="dropdown-menu" aria-labelledby="admin_menu">
 					<div class="">
-						<span class="dropdown-item btn bg-primary text-info active">게시글
+						<span class="dropdown-item btn bg-primary text-white active">게시글
 						</span>
 					</div>
-					<div class="bg-white">
-						<a class="dropdown-item btn" href="/board/admin/deletedList">삭제
-							게시글</a> <a class="dropdown-item btn " href="/board/admin/updatedList">수정
-							게시글</a> <a class="dropdown-item btn " href="/board/admin/normalList">일반
+					<div class="text-secondary">
+						<a class="dropdown-item btn cus-dropdown" href="/board/admin/deletedList">삭제
+							게시글</a> <a class="dropdown-item btn cus-dropdown" href="/board/admin/updatedList">수정
+							게시글</a> <a class="dropdown-item btn cus-dropdown" href="/board/admin/normalList">일반
 							게시글</a>
 					</div>
 
@@ -160,9 +160,15 @@
 
 <script type="text/javascript">
 	$(function() {
-
+		if(("${sessionScope.designTheme}")=="minty"){
+			forExceptTheme();
+		}
+		
+				
+		
 		$("a[class^=active]").each(function(i, element) {
 			$(this).removeClass("active")
+			
 		})
 
 		$(".theme-options").click(
@@ -189,6 +195,16 @@
 
 						}
 					});
+					if(d_theme == "minty"){
+						$(".cus-dropdown").addClass("text-primary")
+						$(".cus-dropdown").hover(function() {
+						$(this).removeClass("text-primary")
+						$(this).addClass("text-default")
+					
+						}, function() {
+						$(this).addClass("text-primary")
+						})
+					}
 					$("#b-css").prop(
 							"href",
 							"https://bootswatch.com/4/" + d_theme
@@ -210,6 +226,19 @@
 				$(".theme-options").hover(function() {
 					$(this).toggleClass("text-default text-info")
 				})
+				
+				function forExceptTheme() {
+					$(".cus-dropdown").addClass("text-primary")
+					$(".cus-dropdown").hover(function() {
+					$(this).removeClass("text-primary")
+					$(this).addClass("text-default")
+				
+					}, function() {
+					$(this).addClass("text-primary")
+					})
+				}
+				
+				
 	})
 </script>
 <!-- CDN -->
