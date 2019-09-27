@@ -54,7 +54,7 @@ public class BoardServiceImpl implements BoardService {
 	public int remove(int bno) {
 		// TODO Auto-generated method stub
 		try {
-			int pageNum = boardMapper.pageNum(bno);
+			int pageNum = boardMapper.pageNum(bno,10);
 			boardMapper.insertHistory(bno);
 			boardMapper.updatehisDel(bno);
 			return pageNum;
@@ -69,7 +69,7 @@ public class BoardServiceImpl implements BoardService {
 	public int removeAdmin(int bno) {
 		// TODO Auto-generated method stub
 		try {
-			  int pageNum = boardMapper.pageNum(bno);
+			  int pageNum = boardMapper.pageNum(bno,10);
 			  BoardVO vo = boardMapper.select(bno); 
 			  if(boardMapper.delete(bno)==0) throw
 			  new Exception(); boardMapper.insertHistory(vo.getBno());
@@ -99,6 +99,6 @@ public class BoardServiceImpl implements BoardService {
 		// TODO Auto-generated method stub
 		return boardMapper.stateCnt(state);
 	}
-	
+
 	
 }

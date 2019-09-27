@@ -71,7 +71,7 @@
 				role="button" data-toggle="dropdown" aria-haspopup="true"
 				aria-expanded="false"> 테마 </a>
 				<div class="dropdown-menu" aria-labelledby="design_themes">
-					<span class="dropdown-item btn bg-primary text-info active"  >bootswatch theme
+					<span class="dropdown-item btn bg-primary text-white active"  >bootswatch themes
 					</span>
 					<c:forEach items="${themes}" var="btheme">
 						<a class="dropdown-item btn theme-options" title = "${btheme}" role="${btheme}">${btheme}</a>
@@ -176,7 +176,7 @@
 					})	
 					
  				$(this).addClass("active");
-				$(this).addClass("text-white"); 
+				//$(this).addClass("text-white"); 
 					$.ajax({
 						type : "POST",
 						url : "/thm_change",
@@ -207,9 +207,9 @@
 									+ "/_bootswatch.scss")
 
 				})
-		$(".dropdown-item").hover(function() {
-			$(this).toggleClass("text-white");
-		})
+				$(".theme-options").hover(function() {
+					$(this).toggleClass("text-default text-info")
+				})
 	})
 </script>
 <!-- CDN -->
@@ -242,3 +242,4 @@
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css"> -->
 <%@include file="../include/modals.jsp"%>
 <link rel="stylesheet" href="/resource/css/custom.css">
+<hr>

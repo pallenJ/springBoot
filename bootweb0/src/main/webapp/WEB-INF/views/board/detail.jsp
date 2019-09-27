@@ -13,8 +13,8 @@
 </head>
 <body>
 	<%-- <h1>${bno}</h1> --%>
-	<c:set var = "modal_name" value="modify"></c:set>
-	<c:set var = "modal_msg" value="정말 수정하시겠습니까?"></c:set>
+<%-- 	<c:set var = "modal_name" value="modify"></c:set>
+	<c:set var = "modal_msg" value="정말 수정하시겠습니까?"></c:set> --%>
 	<div class="container">
 		<div class="card">
 			<div class="panel panel-default">
@@ -26,12 +26,12 @@
 
 						
 					</div>
-						<small class = "pull-right text-black-50"> ip:<c:out value="${board.ip_address}"></c:out></small> 
+						<small class = "pull-right text-warning"> ip:<c:out value="${board.ip_address}"></c:out></small> 
 				</div>
 				
 <%-- 				<c:if test="${fn:length(editHistory) > 0 }"> --%>
 				<c:if test="${board.state eq 'UPDATED' }">
-						<small class="btn pull-right text-info" data-toggle= "modal" data-target = "#historyModal"> 수정내역보기</small>
+						<button class="btn btn-outline-info pull-right" data-toggle= "modal" data-target = "#historyModal"> 수정내역보기</button>
 				</c:if>
 				
 				<!-- /.panel-heading -->
@@ -51,7 +51,7 @@
 					<div class="form-group">
 
 				<div>	
-				<div id = "content_include_div" class="card panel border border-dark">
+				<div id = "content_include_div" class="card panel border">
 				
 				<div id = "content_header_div" class = "panel-head border-primary content-div bg-primary">content</div>
 				<div id = "content_div" class = "panel-body border-primary content-div container-fluid summernote-trs"><c:out value='${board.content}'></c:out></div>
@@ -69,7 +69,7 @@
 					
 					<div id = "detail-pg-btns">
 					          
-					<button data-oper="modify" class="btn btn-secondary btn-icon-split" id = "brd_modify"><span class="fa fas fa-edit active"></span> <span>Modify</span> </button>
+					<button data-oper="modify" class="btn btn-secondary btn-icon-split border" id = "brd_modify"><span class="fa fas fa-edit active"></span> <span>Modify</span> </button>
 					<button data-oper="list" class="btn btn-info btn-go btn-for-detail" title="list"><i class="fa fas fa-clipboard"></i> List</button>
 					<button data-oper="register" class="btn btn-primary btn-for-detail btn-go" title ="register"><i class="fa fas fa-pencil"></i> new Post</button>
 					<button data-oper="cancel" class="btn btn-danger btn-go btn-for-edit" title = "remove" id = "remove_brd_btn"><i class = "fa fa-trash"></i> remove</button>
@@ -174,7 +174,9 @@ function modifyActive() {
 	$("#passwordModal").hide();
 	$("#content_div").summernote({
 		"code":$("#content_div").val(),
-		"display": "none"});
+		"height": 300,
+		"display": "none"
+		});
 	
 	$("#content_div").prop("data-toggle", "modal")
 	$("#content_div").prop("data-target", "#modifyModal")

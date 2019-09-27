@@ -32,7 +32,7 @@
         </button>
       </div>
       <div class="modal-body">
-        <p>정말 수정하시겠습니까?</p>
+        <p class ="text-default">정말 수정하시겠습니까?</p>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-primary btn-modal-save" id= "modify_save">Save changes</button>

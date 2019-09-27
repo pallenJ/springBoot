@@ -8,6 +8,7 @@ $(function () {
 		.replace(/&quot;/gi, "\"")
 		.replace(/&#034;/gi,"\"")
 		.replace(/&#039;/gi,"\'")
+		.replace(/&nbsp;/gi," ")
 		;
 		$(this).html(content);	
 	}); //summernote에 html로 쓰인 내용의 변환을 되돌리기 위한것.	

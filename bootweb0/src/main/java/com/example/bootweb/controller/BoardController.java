@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.example.bootweb.domain.BoardVO;
 import com.example.bootweb.domain.Criteria;
@@ -78,8 +79,12 @@ public class BoardController {
 	}
 	
 	  @GetMapping(value = "/remove") 
-	  public String remove(int bno,Model model) { 
-		  boardService.remove(bno);
+	  public String remove(RedirectAttributes rttr, int bno,Model model) { 
+		  int p = boardService.remove(bno);
+		  log.info("page:"+p);
+		  rttr.addAttribute("p",p);
+		  rttr.addAttribute("amt",10);
+		  
 		  return "redirect:/board/list";
 	}
 	 	
