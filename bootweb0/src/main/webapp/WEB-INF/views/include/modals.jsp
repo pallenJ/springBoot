@@ -105,6 +105,31 @@
   </div>
 </div>
 
+<div class="modal fade" id = "brd_previewModal" style="width: 100%">
+  <div class="modal-dialog modal-lg" role="dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">미리보기</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+  
+      <div class="modal-body">
+				<div class="card panel border">
+				
+				<div  class = "panel-head border-primary content-div bg-primary">content</div>
+				<div id="brd_preview" class = "panel-body border-primary content-div container-fluid"></div>
+				
+				</div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
 <div class="modal fade" id = "loginModal">
   <div class="modal-dialog" role="dialog">
     <div class="modal-content">
@@ -125,3 +150,4 @@
     </div>
   </div>
 </div>
+

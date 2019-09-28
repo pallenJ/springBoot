@@ -10,7 +10,7 @@
 <meta charset="UTF-8">
 <title>Board</title>
 
-
+<!-- <script type="text/javascript" src="/resource/js/util.js"></script> -->
 <!-- include summernote css/js -->
 <link href="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.11/summernote.css" rel="stylesheet">
 <script src="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.11/summernote.js"></script>
@@ -36,8 +36,7 @@
 						<label>Title</label> <input class="form-control brd-item" name="title" required="required">
 					</div>
 					<div class="form-group">
-
-						<label>TextArea</label>
+						
 						<textarea id="summernote" class="brd-item" name = "content"></textarea>
 				<div>
 				</div>
@@ -48,7 +47,7 @@
 					</div>
 
 					<jsp:include page="forms/pw_form.jsp"></jsp:include>
-					
+<button hidden="hidden" id = "for_form_submit"></button>					
 </form>
 					<button data-oper="new" class="btn btn-primary" id= "board-submit">submit</button>
 					<button data-oper="list" class="btn btn-danger" onclick="history.back();">cancel</button>
@@ -72,12 +71,26 @@
 
 $(function() {
 	  $('#summernote').summernote({
+			toolbar: [
+			    ['style', ['style']],
+			    ['font', ['bold', 'italic', 'underline', 'clear']],
+			    ['fontname', ['fontname']],
+			    ['color', ['color']],
+			    ['para', ['ul', 'ol', 'paragraph']],
+			    ['height', ['height']],
+			    ['table', ['table']],
+			    ['insert', ['link', 'picture', 'hr']],
+			    ['view', ['fullscreen', 'codeview']],
+			    ['help', ['help']]
+			  ],
 	    height: 300,
 	    lang: 'ko-KR', // 언어 세팅
 	  });
+	 $(".note-toolbar").append("<a class = 'note-btn-group btn btn-default btn-sm text-info btn-preview' role='button'"
+	 +"tabindex=-1 title aria-label='preview' data-original-title = 'preview'>preview</a>")	  
 	  
 	  $("#board-submit").click(function() {
-		var need = [];
+		/* var need = [];
 		  $(".brd-item").each(function(i, element) {
 			  var bValue = $(this).val();
 
@@ -88,11 +101,25 @@ $(function() {
 	  	if(need.length>0){
 	  		alert(need+"를 입력해주세요")
 	  		return;
-	  	}
-	  	alert($('#summernote').summernote("code"));
-	  	$("#board-form").submit();
+	  	} */
+	  	//alert();
+	  	$("#for_form_submit").click();
 	  });
+	 $(".btn-preview").click(function() {
+		 // data-toggle='modal' data-target='#brd_previewModal'
+		 	var content = summerTrs($('#summernote').summernote("code"));
+		 	/* $('#summernote').summernote("code")		.replace(/&lt;/gi, "<")
+			.replace(/&gt;/gi, ">")
+			.replace(/&quot;/gi, "\"")
+			.replace(/&#034;/gi,"\"")
+			.replace(/&#039;/gi,"\'")
+			.replace(/&nbsp;/gi," ")
+			; */
+		 	$("#brd_preview").html(content);
+		 	$("#brd_previewModal").modal();
+	 })
 
+	 
 	  
 	});
 

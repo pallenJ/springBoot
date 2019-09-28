@@ -131,8 +131,16 @@ if("${board.state}"=="DELETED"){
 	history.back();
 }
 
+/* $("#content_div").summernote({
 
+	"code":$("#content_div").val(),
+	"height": 300,
+	"display": "none",
+	});
+ */
+//$("#content_div").summernote('disable')
 
+//(".note-toolbar").hide();
 $(".btn-for-edit").hide();
 
 //alert(content);
@@ -171,13 +179,13 @@ $("#brd_modify").click(function() {
 });
 
 function modifyActive() {
+
+	$("#content_div").summernote("enable");
+	$(".note-toolbar").show();
+	
 	$("#passwordModal").modal("hide")
 	
-	$("#content_div").summernote({
-		"code":$("#content_div").val(),
-		"height": 300,
-		"display": "none"
-		});
+	
 	
 	$("#content_div").prop("data-toggle", "modal")
 	$("#content_div").prop("data-target", "#modifyModal")

@@ -7281,7 +7281,7 @@ button.close {
 .modal-open {
 	overflow: hidden
 }
-
+/* 
 .modal {
 	position: fixed;
 	top: 0;
@@ -7294,7 +7294,7 @@ button.close {
 	-webkit-overflow-scrolling: touch;
 	outline: 0
 }
-
+ */
 .modal.fade .modal-dialog {
 	-webkit-transition: -webkit-transform .3s ease-out;
 	-o-transition: -o-transform .3s ease-out;
@@ -7335,6 +7335,20 @@ button.close {
 	-webkit-box-shadow: 0 3px 9px rgba(0, 0, 0, .5);
 	box-shadow: 0 3px 9px rgba(0, 0, 0, .5)
 }
+
+/* .modal-dialog.modal-fullsize {
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+.modal-content.modal-fullsize {
+  height: auto;
+  min-height: 100%;
+  border-radius: 0; 
+}
+ */
+
 
 .modal-backdrop {
 	position: fixed;
@@ -7421,6 +7435,9 @@ button.close {
 @media (min-width:992px) {
 	.modal-lg {
 		width: 900px
+	}
+	.modal-fullsize {
+		width: 100%
 	}
 }
 
