@@ -61,20 +61,20 @@ public class BoardController {
 		BoardVO vo = boardService.detail(bno);
 		model.addAttribute("bno", bno);
 		model.addAttribute("board", vo);
-		model.addAttribute("editHistory", boardService.historyList(bno));
+		//model.addAttribute("editHistory", boardService.historyList(bno));
 		
 		log.info("vo = "+vo);
-		log.info("edit = "+boardService.historyList(bno));
+		//log.info("edit = "+boardService.historyList(bno));
 		
 		return "board/detail";
 	}
 	
-	@SuppressWarnings("unchecked")
-	@ResponseBody
-	@GetMapping("editHistory")
-	public List<BoardVO> getEditHistory(int bno){
-		log.info(boardService.historyList(bno)+"");
-		return (List<BoardVO>)boardService.historyList(bno);
+	@GetMapping("editHistoryForm")
+	public String getEditHistory(int bno, Model model){
+		List<?> history  =  boardService.historyList(bno);
+		model.addAttribute("editHistory", history);
+		log.info(history.toString());
+		return "/board/detail_history";
 	}
 	
 	

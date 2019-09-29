@@ -165,9 +165,9 @@
 					<span aria-hidden="true">&times;</span>
 				</button>
 			</div>
-			<div class="modal-body">
+			<div id = "content_history" class="modal-body">
 				<!-- modal history 페이지를 불러옴 -->
-				<jsp:include page="detail_history.jsp"></jsp:include>
+				<%-- <jsp:include page="detail_history.jsp"></jsp:include> --%>
 			</div>
 			<div class="modal-footer">
 				<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
@@ -306,22 +306,29 @@
 				})
 				
 		$("#editHis").click(function() {
-			alert("${bno}")
-			 $.ajax({
-	                url : '/board/editHistory',
+			//수정내역 불러오는 부분
+			
+			//간단한 버전
+			$("#content_history").load("/board/editHistoryForm?bno=${bno}");
+			
+			//ajax버전
+			/*  
+			$.ajax({
+	                url : '/board/editHistoryForm',
 	                type : 'GET',
 	                data : {'bno':'${bno}'},
-	                datatype:'text',
+	                datatype:'html',
                     success: function(data) {
                     	alert($(data));
-                
+                    	$("#content_history").html(data);
               },
               error: function(xhr, status, error){
                   alert("xhr:"+xhr+", status:"+ status + ", error:"+error);
               }
 	                
-			 })
-
+			 }); 
+			 */
+			
 		}) 
 
 	});
