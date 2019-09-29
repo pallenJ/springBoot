@@ -164,11 +164,10 @@
 			forExceptTheme();
 		}
 		
-				
-		
-		$("a[class^=active]").each(function(i, element) {
-			$(this).removeClass("active")
-			
+		$(".theme-options").each(function(i, element) {
+			if($(this).text()=="${sessionScope.designTheme}"){
+				$(this).addClass("active")
+			}
 		})
 
 		$(".theme-options").click(
@@ -259,16 +258,13 @@
 <%
 	try {
 		session.setAttribute("nowTheme", pageContext.getAttribute("theme"));
-		;
 	} catch (Exception e) {
 		session.setAttribute("nowTheme", "minty");
-		;
 	}
 %>
 <!-- 개인적으로 쓰는 리소스들 -->
-<script type="text/javascript" src="/resource/js/util.js"></script>
+
 <!-- <link rel="stylesheet"
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css"> -->
-<%@include file="../include/modals.jsp"%>
-<link rel="stylesheet" href="/resource/css/custom.css">
+
 <hr>

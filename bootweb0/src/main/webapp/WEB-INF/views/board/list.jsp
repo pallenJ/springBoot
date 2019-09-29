@@ -202,5 +202,7 @@ $(function () {
 	
 })
 </script>
-    <jsp:include page="/WEB-INF/views/include/modals.jsp"></jsp:include>
+<footer>
+<%@include file="../include/footer.jsp"%>
+</footer>
 </html>

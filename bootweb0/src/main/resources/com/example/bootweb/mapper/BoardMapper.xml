@@ -30,7 +30,7 @@ LIMIT #{limit},#{amount}
 </select>
 
 <select id="countAll" resultType="int">
-SELECT COUNT(*) FROM tbl_board;
+SELECT COUNT(*) FROM tbl_board A
 </select>
 <delete id="delete" parameterType="int">
 DELETE FROM tbl_board WHERE bno = #{bno}

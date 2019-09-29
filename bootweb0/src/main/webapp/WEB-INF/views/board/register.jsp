@@ -36,8 +36,8 @@
 						<label>Title</label> <input class="form-control brd-item" name="title" required="required">
 					</div>
 					<div class="form-group">
-						
-						<textarea id="summernote" class="brd-item" name = "content"></textarea>
+						<a class = 'btn btn-default btn-sm text-info btn-preview' >preview</a>
+						<textarea id="content_div" class="brd-item" name = "content"></textarea>
 				<div>
 				</div>
 					</div>
@@ -70,7 +70,7 @@
 <script type="text/javascript">
 
 $(function() {
-	  $('#summernote').summernote({
+	  $('#content_div').summernote({
 			toolbar: [
 			    ['style', ['style']],
 			    ['font', ['bold', 'italic', 'underline', 'clear']],
@@ -86,44 +86,22 @@ $(function() {
 	    height: 300,
 	    lang: 'ko-KR', // 언어 세팅
 	  });
-	 $(".note-toolbar").append("<a class = 'note-btn-group btn btn-default btn-sm text-info btn-preview' role='button'"
-	 +"tabindex=-1 title aria-label='preview' data-original-title = 'preview'>preview</a>")	  
+
 	  
 	  $("#board-submit").click(function() {
-		/* var need = [];
-		  $(".brd-item").each(function(i, element) {
-			  var bValue = $(this).val();
 
-		  		if(bValue == null || bValue == ''){
-		  			need.push($(this).prop("name"));
-		  		}
-		  });
-	  	if(need.length>0){
-	  		alert(need+"를 입력해주세요")
-	  		return;
-	  	} */
-	  	//alert();
 	  	$("#for_form_submit").click();
 	  });
-	 $(".btn-preview").click(function() {
-		 // data-toggle='modal' data-target='#brd_previewModal'
-		 	var content = summerTrs($('#summernote').summernote("code"));
-		 	/* $('#summernote').summernote("code")		.replace(/&lt;/gi, "<")
-			.replace(/&gt;/gi, ">")
-			.replace(/&quot;/gi, "\"")
-			.replace(/&#034;/gi,"\"")
-			.replace(/&#039;/gi,"\'")
-			.replace(/&nbsp;/gi," ")
-			; */
-		 	$("#brd_preview").html(content);
-		 	$("#brd_previewModal").modal();
-	 })
+
 
 	 
 	  
 	});
-
 </script>
 
+
 </body>
+<footer>
+<%@include file="../include/footer.jsp"%>
+</footer>
 </html>

@@ -118,7 +118,7 @@
       <div class="modal-body">
 				<div class="card panel border">
 				
-				<div  class = "panel-head border-primary content-div bg-primary">content</div>
+				<div  class = "panel-head border-primary bg-primary">content</div>
 				<div id="brd_preview" class = "panel-body border-primary content-div container-fluid"></div>
 				
 				</div>
@@ -150,4 +150,5 @@
     </div>
   </div>
 </div>
+
 

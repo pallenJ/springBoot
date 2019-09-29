@@ -29,7 +29,8 @@ public class Bootweb0ApplicationTests {
 	
 	@Test
 	public void contextLoads() {
-		log.info(boardMapper.pageNum(9,10)+"");
+		log.info("list cnt : "+boardMapper.stateCnt("NORMAL"));
+		//log.info(boardMapper.pageNum(9,10)+"");
 		//boardMapper.insert(new BoardVO("ttt", "www", "ccc"));
 		//int max = boardService.listAll().size();
 		

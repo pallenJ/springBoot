@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.example.bootweb.domain.BoardVO;
@@ -40,7 +41,7 @@ public class BoardController {
 	public void list(HttpServletRequest request,Model model) {
 	int pageNum = 1;
 	int amount = 10;
-	int max = boardService.countAll();
+	int max = boardService.stateCnt("NORMAL");
 	log.info("max:"+max);
 	try {
 		pageNum = Integer.parseInt(request.getParameter("p"));
@@ -67,6 +68,15 @@ public class BoardController {
 		
 		return "board/detail";
 	}
+	
+	@SuppressWarnings("unchecked")
+	@ResponseBody
+	@GetMapping("editHistory")
+	public List<BoardVO> getEditHistory(int bno){
+		log.info(boardService.historyList(bno)+"");
+		return (List<BoardVO>)boardService.historyList(bno);
+	}
+	
 	
 	@GetMapping(value = "/register")
 	public void register() {}

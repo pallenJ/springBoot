@@ -8,15 +8,20 @@ function summerTrs(str) {
 	.replace(/&nbsp;/gi," ")
 	;
 }
+
+
+
 $(function () {
-	
+
+
 	
 	$(".summernote-trs").each(function() {
 		
 		var content = summerTrs($(this).html());
-		
 		$(this).html(content);	
 	}); //summernote에 html로 쓰인 내용의 변환을 되돌리기 위한것.	
+	
+	$(".content-div").css({"min-height":"200px","max-height":"500px","overflow":"auto"});
 	
 	 $(".pw-form-custom").on("change keyup paste", function() {
 		    var pw_eq = $("#brd_pw").val() == $("#brd_pw_ck").val();
@@ -37,6 +42,10 @@ $(function () {
 		    
 		    
 	});
-	
+	 $(".btn-preview").click(function() {
+		 	var content = summerTrs($('#content_div').summernote("code"));
+		 	$("#brd_preview").html(content);
+		 	$("#brd_previewModal").modal();
+	 })
 	 
 });
