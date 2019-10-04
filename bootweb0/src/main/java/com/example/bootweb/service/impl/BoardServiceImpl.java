@@ -100,5 +100,11 @@ public class BoardServiceImpl implements BoardService {
 		return boardMapper.stateCnt(state);
 	}
 
+	@Override
+	public int stateCntInv(String state) {
+		// TODO Auto-generated method stub
+		return boardMapper.stateCntInv(state);
+	}
+
 	
 }

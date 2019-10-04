@@ -41,7 +41,7 @@ public class BoardController {
 	public void list(HttpServletRequest request,Model model) {
 	int pageNum = 1;
 	int amount = 10;
-	int max = boardService.stateCnt("NORMAL");
+	int max = boardService.stateCntInv("DELETED");
 	log.info("max:"+max);
 	try {
 		pageNum = Integer.parseInt(request.getParameter("p"));

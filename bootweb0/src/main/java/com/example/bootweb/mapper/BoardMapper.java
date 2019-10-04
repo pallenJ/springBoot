@@ -10,6 +10,7 @@ public interface BoardMapper {
 	public void insert(BoardVO vo);
 	public BoardVO select(int bno);
 	public List<?> listAll();
+	public List<?> listState();
 	public List<?> listWithPaging(Criteria cri);	
 	public int countAll();
 	public void update(BoardVO vo);
@@ -22,6 +23,7 @@ public interface BoardMapper {
 	public List<?> getBoardHistory(int bno);
 	public void updatehisDel(int bno);
 	
+	public int stateCntInv(String state);
 	public int stateCnt(String state);
 	public List<?> stateList(Criteria cri);
  }

@@ -15,7 +15,7 @@
 	pageContext.setAttribute("theme", session.getAttribute("designTheme"));//21개 테마
 %>
 <script type="text/javascript">
-	
+	//alert("${theme}")
 </script>
 <div id="tm-change"></div>
 
