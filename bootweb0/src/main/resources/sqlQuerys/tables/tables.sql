@@ -33,3 +33,34 @@ CREATE TABLE `tbl_board_history` (
 COLLATE='utf8_bin'
 ENGINE=InnoDB
 ;
+
+CREATE TABLE `tbl_reply` (
+	`rno` INT(11) NOT NULL AUTO_INCREMENT,
+	`bno` INT(11) NOT NULL,
+	`writer` VARCHAR(50) NOT NULL COLLATE 'utf8_bin',
+	`content` TEXT NOT NULL COLLATE 'utf8_bin',
+	`regDate` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+	`updateDate` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+	`ip_adress` VARCHAR(50) NOT NULL COLLATE 'utf8_bin',
+	`state` VARCHAR(10) NOT NULL COLLATE 'utf8_bin',
+	PRIMARY KEY (`rno`)
+)
+COLLATE='utf8_bin'
+ENGINE=InnoDB
+;
+
+CREATE TABLE `tbl_reply_history` (
+	`hrno` INT(11) NOT NULL AUTO_INCREMENT,
+	`rno` INT(11) NOT NULL,
+	`bno` INT(11) NOT NULL,
+	`writer` VARCHAR(50) NOT NULL COLLATE 'utf8_bin',
+	`content` TEXT NOT NULL COLLATE 'utf8_bin',
+	`regDate` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+	`updateDate` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+	`ip_adress` VARCHAR(50) NOT NULL COLLATE 'utf8_bin',
+	`state` VARCHAR(10) NOT NULL COLLATE 'utf8_bin',
+	PRIMARY KEY (`hrno`)
+)
+COLLATE='utf8_bin'
+ENGINE=InnoDB
+;
