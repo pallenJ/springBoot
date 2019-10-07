@@ -19,12 +19,12 @@
 </head>
 <body>
 
-<div id = "hisSetting"></div>
+	<div id="hisSetting"></div>
 
 
-<!-- container -->
+	<!-- container -->
 	<div class="container">
-	<!-- card -->
+		<!-- card -->
 		<div class="card">
 			<div class="panel panel-default">
 				<div class="panel-heading">
@@ -39,8 +39,8 @@
 				</div>
 
 				<c:if test="${board.state eq 'UPDATED' }">
-					<button id = "editHis" class="btn btn-outline-info pull-right" data-toggle="modal"
-						data-target="#historyModal">수정내역보기</button>
+					<button id="editHis" class="btn btn-outline-info pull-right"
+						data-toggle="modal" data-target="#historyModal">수정내역보기</button>
 				</c:if>
 
 				<!-- /.panel-heading -->
@@ -56,7 +56,7 @@
 								value='<c:out value="${board.bno}"></c:out>' readonly="readonly">
 						</div>
 						<!-- /.Bno -->
-						
+
 						<!-- Title -->
 						<div class="form-group">
 							<label>Title</label> <input class="form-control" name="title"
@@ -64,7 +64,7 @@
 								readonly="readonly" required />
 						</div>
 						<!-- /.Title -->
-						
+
 						<!-- content -->
 						<div class="form-group">
 
@@ -85,8 +85,8 @@
 							</div>
 							<input type="hidden" name="content">
 						</div>
-					<!-- /.content -->
-					<!-- wrier -->
+						<!-- /.content -->
+						<!-- wrier -->
 					</form>
 					<div class="form-group">
 						<label>Writer</label> <input class="form-control" name="writer"
@@ -101,34 +101,34 @@
 						<!-- btn-for-detail은 detail상태에서만 보이는 버튼 -->
 						<!-- btn-for-modify는 modify상태에서만 보이는 버튼 -->
 						<!-- 둘다 없으면 항상 보이는 버튼 -->
-						
-						
+
+
 						<!-- 수정버튼. detail상태에서 클릭시 비밀번호 입력 Modal이 뜸 -->
 						<!-- 그리고 수정 상태에서 클릭시 수정여부 Modal이 뜸.-->
 						<button data-oper="modify"
 							class="btn btn-secondary btn-icon-split border" id="brd_modify">
 							<span class="fa fas fa-edit active"></span> <span>Modify</span>
 						</button>
-						
+
 						<!-- 게시판으로 돌아가는 버튼.  -->
 						<button data-oper="list"
 							class="btn btn-info btn-go btn-for-detail" title="list">
 							<i class="fa fas fa-clipboard"></i> List
 						</button>
-						
+
 						<!-- 새로운 글 쓰기 버튼 -->
 						<button data-oper="register"
 							class="btn btn-primary btn-for-detail btn-go" title="register">
 							<i class="fa fas fa-pencil"></i> new Post
 						</button>
-						
+
 						<!-- 삭제버튼. 실제 삭제는 아니고 삭제한 걸로 state를 바꿈 -->
 						<button data-oper="remove"
 							class="btn btn-danger btn-go btn-for-edit" title="remove"
 							id="remove_brd_btn">
 							<i class="fa fa-trash"></i> remove
 						</button>
-						
+
 						<!-- 취소버튼 -->
 						<button data-oper="cancel"
 							class="btn btn-warning btn-go btn-for-edit" title="cancel"
@@ -140,16 +140,47 @@
 						</div>
 					</div>
 					<!-- 버튼 end -->
-	
+
 				</div>
 				<!-- /.panel-body -->
 
 			</div>
 			<!-- /.panel -->
+
+
 		</div>
 		<!-- /.card -->
+		<hr>
+		<div class="card bg-primary">
+			<div class="card-header text-white">
+				<span class="fa fa-comment"> reply</span>
+
+			</div>
+			<div class="card-body">
+
+				<table class="table">
+
+					<thead>
+						<tr>
+							<td colspan="100%">
+								<div class="form-inline">
+									<textarea class="btn-block" id ="reply_add_area"></textarea>
+									<button class="btn btn-success btn-md">add</button>
+								</div> <!-- <td align="center" colspan="10%"> <button class = "btn btn-success btn-block">add</button> -->
+					</thead>
+
+				</table>
+
+				<!-- 	<form class="form-inline">
+			 
+			</form> -->
+
+			</div>
+		</div>
+
+
 	</div>
-<!-- /.container -->
+	<!-- /.container -->
 
 </body>
 
@@ -165,7 +196,7 @@
 					<span aria-hidden="true">&times;</span>
 				</button>
 			</div>
-			<div id = "content_history" class="modal-body">
+			<div id="content_history" class="modal-body">
 				<!-- modal history 페이지를 불러옴 -->
 				<%-- <jsp:include page="detail_history.jsp"></jsp:include> --%>
 			</div>
@@ -199,10 +230,7 @@
 		 $(".note-toolbar").hide();
 
 		 */
-		
-		 
-		 
-		 
+
 		$(".btn-for-edit").hide();
 
 		//alert(content);
@@ -304,32 +332,40 @@
 						$(location).attr("href", $(this).prop("title"));
 					}
 				})
-				
+
 		$("#editHis").click(function() {
 			//수정내역 불러오는 부분
-			
+
 			//간단한 버전
 			$("#content_history").load("/board/editHistoryForm?bno=${bno}");
-			
+
 			//ajax버전
 			/*  
 			$.ajax({
-	                url : '/board/editHistoryForm',
-	                type : 'GET',
-	                data : {'bno':'${bno}'},
-	                datatype:'html',
-                    success: function(data) {
-                    	alert($(data));
-                    	$("#content_history").html(data);
-              },
-              error: function(xhr, status, error){
-                  alert("xhr:"+xhr+", status:"+ status + ", error:"+error);
-              }
-	                
+			        url : '/board/editHistoryForm',
+			        type : 'GET',
+			        data : {'bno':'${bno}'},
+			        datatype:'html',
+			        success: function(data) {
+			        	alert($(data));
+			        	$("#content_history").html(data);
+			  },
+			  error: function(xhr, status, error){
+			      alert("xhr:"+xhr+", status:"+ status + ", error:"+error);
+			  }
+			        
 			 }); 
 			 */
-			
-		}) 
+
+		});
+		
+		$("#reply_add_area").focus(function() {
+			$(this).summernote({
+				width:  "100%" ,
+				lang : 'ko-KR'
+			});
+		})
+		
 
 	});
 </script>

@@ -44,11 +44,21 @@
 			<li class="nav-item active"><a class="nav-link" href="/">Home
 					<span class="sr-only">(current)</span>
 			</a></li>
-			<li class="nav-item"><a class="nav-link" href="#"
-				data-toggle="modal" data-target="#loginModal" id="login_a">로그인</a></li>
+			<li class="nav-item dropdown">
+			<a class="nav-link dropdown-toggle" href="#" id="user_menu"
+				role="button" data-toggle="dropdown" aria-haspopup="true"
+				aria-expanded="false"> 유저 메뉴 </a>
+							<div class="dropdown-menu" aria-labelledby="user_menu">
+					<div class="">
+			<a class="dropdown-item btn cus-dropdown" href="#"
+				data-toggle="modal" data-target="#loginModal" id="login_a">로그인</a>
+			<a class="dropdown-item btn cus-dropdown" href="#"
+				data-toggle="modal" data-target="#loginModal" id="login_a">로그인</a>
+				
+				</div></div></li>
 
-			<li class="nav-item dropdown"><a
-				class="nav-link dropdown-toggle" href="#" id="admin_menu"
+			<li class="nav-item dropdown">
+			<a class="nav-link dropdown-toggle" href="#" id="admin_menu"
 				role="button" data-toggle="dropdown" aria-haspopup="true"
 				aria-expanded="false"> 관리자 메뉴 </a>
 				<div class="dropdown-menu" aria-labelledby="admin_menu">
@@ -71,7 +81,7 @@
 				role="button" data-toggle="dropdown" aria-haspopup="true"
 				aria-expanded="false"> 테마 </a>
 				<div class="dropdown-menu" aria-labelledby="design_themes">
-					<span class="dropdown-item btn bg-primary text-white active"  >bootswatch themes
+					<span class="dropdown-item btn bg-dark text-white active"  >bootswatch themes
 					</span>
 					<c:forEach items="${themes}" var="btheme">
 						<a class="dropdown-item btn theme-options" title = "${btheme}" role="${btheme}">${btheme}</a>
