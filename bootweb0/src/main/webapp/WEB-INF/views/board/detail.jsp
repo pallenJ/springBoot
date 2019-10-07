@@ -38,7 +38,7 @@
 							value="${board.ip_address}"></c:out></small>
 				</div>
 
-				<c:if test="${board.state eq 'UPDATED' }">
+				<c:if test="${board.state ne 'NORMAL' }">
 					<button id = "editHis" class="btn btn-outline-info pull-right" data-toggle="modal"
 						data-target="#historyModal">수정내역보기</button>
 				</c:if>
