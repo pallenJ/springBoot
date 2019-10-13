@@ -40,6 +40,7 @@ public class BoardController {
 	
 	@GetMapping("list")
 	public void list(HttpServletRequest request,Model model) {
+	log.info("ip :{}",getIpAdress(request));
 	int pageNum = 1;
 	int amount = 10;
 	int max = boardService.stateCntInv("DELETED");

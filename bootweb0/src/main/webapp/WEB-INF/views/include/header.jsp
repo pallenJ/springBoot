@@ -1,3 +1,4 @@
+<%@page import="java.util.Random"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -11,8 +12,14 @@
 			"lumen", "lux", "materia", "minty", "pulse", "sandstone", "simplex", "sketchy", "slate", "solar",
 			"spacelab", "superhero", "united", "yeti"};
 	pageContext.setAttribute("themes", themes);
-
-	pageContext.setAttribute("theme", session.getAttribute("designTheme"));//21개 테마
+	
+	String designTheme = ""; 
+	if(session.getAttribute("designTheme")!=null&&!session.getAttribute("designTheme").toString().equals("")){
+		designTheme= session.getAttribute("designTheme").toString();
+	}else {
+		designTheme = themes[new Random().nextInt(themes.length)];
+	}
+	pageContext.setAttribute("theme", designTheme);//21개 테마
 %>
 <script type="text/javascript">
 	//alert("${theme}")
