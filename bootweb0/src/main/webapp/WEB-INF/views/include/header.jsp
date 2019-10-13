@@ -44,21 +44,21 @@
 			<li class="nav-item active"><a class="nav-link" href="/">Home
 					<span class="sr-only">(current)</span>
 			</a></li>
-			<li class="nav-item dropdown">
-			<a class="nav-link dropdown-toggle" href="#" id="user_menu"
+<!-- 			<li class="nav-item dropdown"><a
+				class="nav-link dropdown-toggle" href="#" id="user_menu"
 				role="button" data-toggle="dropdown" aria-haspopup="true"
 				aria-expanded="false"> 유저 메뉴 </a>
-							<div class="dropdown-menu" aria-labelledby="user_menu">
+				<div class="dropdown-menu" aria-labelledby="user_menu">
 					<div class="">
-			<a class="dropdown-item btn cus-dropdown" href="#"
-				data-toggle="modal" data-target="#loginModal" id="login_a">로그인</a>
-			<a class="dropdown-item btn cus-dropdown" href="#"
-				data-toggle="modal" data-target="#loginModal" id="login_a">로그인</a>
-				
-				</div></div></li>
+						<a class="dropdown-item btn cus-dropdown" href="#"
+							data-toggle="modal" data-target="#loginModal" id="login_a">로그인</a>
 
-			<li class="nav-item dropdown">
-			<a class="nav-link dropdown-toggle" href="#" id="admin_menu"
+
+					</div>
+				</div></li> -->
+
+			<li class="nav-item dropdown"><a
+				class="nav-link dropdown-toggle" href="#" id="admin_menu"
 				role="button" data-toggle="dropdown" aria-haspopup="true"
 				aria-expanded="false"> 관리자 메뉴 </a>
 				<div class="dropdown-menu" aria-labelledby="admin_menu">
@@ -67,28 +67,28 @@
 						</span>
 					</div>
 					<div class="text-secondary">
-						<a class="dropdown-item btn cus-dropdown" href="/board/admin/deletedList">삭제
-							게시글</a> <a class="dropdown-item btn cus-dropdown" href="/board/admin/updatedList">수정
-							게시글</a> <a class="dropdown-item btn cus-dropdown" href="/board/admin/normalList">일반
-							게시글</a>
+						<a class="dropdown-item btn cus-dropdown"
+							href="/board/admin/deletedList">삭제 게시글</a> <a
+							class="dropdown-item btn cus-dropdown"
+							href="/board/admin/updatedList">수정 게시글</a> <a
+							class="dropdown-item btn cus-dropdown"
+							href="/board/admin/normalList">일반 게시글</a>
 					</div>
 
 				</div></li>
 
-			<li class="nav-item dropdown">
-				<a
+			<li class="nav-item dropdown"><a
 				class="nav-link dropdown-toggle" href="#" id="design_themes"
 				role="button" data-toggle="dropdown" aria-haspopup="true"
 				aria-expanded="false"> 테마 </a>
 				<div class="dropdown-menu" aria-labelledby="design_themes">
-					<span class="dropdown-item btn bg-dark text-white active"  >bootswatch themes
-					</span>
+					<span class="dropdown-item btn bg-dark text-white active">bootswatch
+						themes </span>
 					<c:forEach items="${themes}" var="btheme">
-						<a class="dropdown-item btn theme-options" title = "${btheme}" role="${btheme}">${btheme}</a>
+						<a class="dropdown-item btn theme-options" title="${btheme}"
+							role="${btheme}">${btheme}</a>
 					</c:forEach>
 				</div>
-
-
 			<li class="nav-item"><a class="nav-link" href="#">About</a></li>
 		</ul>
 
@@ -170,12 +170,12 @@
 
 <script type="text/javascript">
 	$(function() {
-		if(("${sessionScope.designTheme}")=="minty"){
+		if (("${sessionScope.designTheme}") == "minty") {
 			forExceptTheme();
 		}
-		
+
 		$(".theme-options").each(function(i, element) {
-			if($(this).text()=="${sessionScope.designTheme}"){
+			if ($(this).text() == "${sessionScope.designTheme}") {
 				$(this).addClass("active")
 			}
 		})
@@ -184,14 +184,14 @@
 				function() {
 					var d_theme = $(this).prop("title");
 					$(".theme-options").each(function(i, element) {
-						if ($(this).prop("class").indexOf("active")>-1) {
+						if ($(this).prop("class").indexOf("active") > -1) {
 							$(this).removeClass("active");
 						}
 
-					})	
-					
- 				$(this).addClass("active");
-				//$(this).addClass("text-white"); 
+					})
+
+					$(this).addClass("active");
+					//$(this).addClass("text-white"); 
 					$.ajax({
 						type : "POST",
 						url : "/thm_change",
@@ -204,14 +204,14 @@
 
 						}
 					});
-					if(d_theme == "minty"){
+					if (d_theme == "minty") {
 						$(".cus-dropdown").addClass("text-primary")
 						$(".cus-dropdown").hover(function() {
-						$(this).removeClass("text-primary")
-						$(this).addClass("text-default")
-					
+							$(this).removeClass("text-primary")
+							$(this).addClass("text-default")
+
 						}, function() {
-						$(this).addClass("text-primary")
+							$(this).addClass("text-primary")
 						})
 					}
 					$("#b-css").prop(
@@ -232,22 +232,21 @@
 									+ "/_bootswatch.scss")
 
 				})
-				$(".theme-options").hover(function() {
-					$(this).toggleClass("text-default text-info")
-				})
-				
-				function forExceptTheme() {
-					$(".cus-dropdown").addClass("text-primary")
-					$(".cus-dropdown").hover(function() {
-					$(this).removeClass("text-primary")
-					$(this).addClass("text-default")
-				
-					}, function() {
-					$(this).addClass("text-primary")
-					})
-				}
-				
-				
+		$(".theme-options").hover(function() {
+			$(this).toggleClass("text-default text-info")
+		})
+
+		function forExceptTheme() {
+			$(".cus-dropdown").addClass("text-primary")
+			$(".cus-dropdown").hover(function() {
+				$(this).removeClass("text-primary")
+				$(this).addClass("text-default")
+
+			}, function() {
+				$(this).addClass("text-primary")
+			})
+		}
+
 	})
 </script>
 <!-- CDN -->
@@ -255,7 +254,7 @@
 	src="http://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.js"></script>
 <script
 	src="http://netdna.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.js"></script>
-<link rel="stylesheet"	href="/resource/css/bootstrap.css" />
+<link rel="stylesheet" href="/resource/css/bootstrap.css" />
 <link rel="stylesheet"
 	href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 

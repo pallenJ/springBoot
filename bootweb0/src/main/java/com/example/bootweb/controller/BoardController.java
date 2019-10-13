@@ -21,6 +21,7 @@ import com.example.bootweb.domain.BoardVO;
 import com.example.bootweb.domain.Criteria;
 import com.example.bootweb.domain.PagingView;
 import com.example.bootweb.service.inf.BoardService;
+import com.example.bootweb.util.UserSHA256;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -59,6 +60,7 @@ public class BoardController {
 	@GetMapping(value = "/{bno}")
 	public String detail(@PathVariable("bno")int bno, Model model) {
 		BoardVO vo = boardService.detail(bno);
+		vo.setPassword("");
 		model.addAttribute("bno", bno);
 		model.addAttribute("board", vo);
 		//model.addAttribute("editHistory", boardService.historyList(bno));
@@ -84,6 +86,7 @@ public class BoardController {
 	@PostMapping(value = "/register")
 	public String register(HttpServletRequest request,BoardVO vo , Model model) {
 		vo.setIp_address(getIpAdress(request));
+		vo.setPassword(UserSHA256.encrypt(vo.getPassword()));
 		log.info(vo.toString());
 		boardService.register(vo);
 		return "redirect:/board/list";
@@ -98,7 +101,15 @@ public class BoardController {
 		  
 		  return "redirect:/board/list";
 	}
-	 	
+	
+	@ResponseBody  
+	@PostMapping("pwCheck")  
+	public boolean pwCheck(int bno,String pw) {
+		BoardVO vo = boardService.detail(bno);
+		
+		return UserSHA256.encrypt(pw).equals(vo.getPassword());
+	}  
+	  
 	  
 	private String getIpAdress(HttpServletRequest request) {
 		 String ip = request.getHeader("X-Forwarded-For");

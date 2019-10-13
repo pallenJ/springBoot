@@ -252,19 +252,30 @@
 
 					$("#passwordSubmit").click(
 							function() {
+								var bno = "${board.bno}";
 								var insertPW = $("#modalPWCheck").val();
-								if (insertPW != ''
-										&& insertPW != '${board.password}') {
-									$("input[type=password]").parent("div")
-											.addClass("has-danger");
-									$("input[type=password]").addClass(
-											"is-invalid");
-									$("#modalPWCheck").addClass("has-danger")
-									return;
-								}
-								modifyActive();
+								
+								 $.ajax({
+									    url: 'pwCheck',
+									    type: 'POST',
+									    async: false,
+									    dataType: 'json',
+									    data: {bno:bno,pw:insertPW},
+									    success: function(data){
+									   		if(data){
+									   			modifyActive();
+									   		}else{
+
+											$("#modalPWCheck").addClass(
+													"is-invalid");
+											return;}
+									    }
+									});
+								
+								
 							})
 
+							
 					$(".btn-modal-save").click(
 							function() {
 								$("input[name='content']").prop("value",

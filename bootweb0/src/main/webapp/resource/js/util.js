@@ -12,7 +12,12 @@ function summerTrs(str) {
 
 
 $(function () {
-
+	 $('.modal').on('hidden.bs.modal', function (e) {
+		   var pwInput = $("input[type=password]");
+		   pwInput.removeClass("is-valid");
+		   pwInput.removeClass("is-invalid");
+		   pwInput.val("");
+		});
 
 	
 	$(".summernote-trs").each(function() {
@@ -24,22 +29,14 @@ $(function () {
 	$(".content-div").css({"min-height":"200px","max-height":"500px","overflow":"auto"});
 	
 	 $(".pw-form-custom").on("change keyup paste", function() {
+		 	var pw_regex = /(?=.*\d{1,20})(?=.*[~`!@#$%\^&*()-+=]{1,20})(?=.*[a-zA-Z]{2,20}).{6,20}$/;;
+
 		    var pw_eq = $("#brd_pw").val() == $("#brd_pw_ck").val();
-		    var pw_length = $(this).val().length >=4;
-		    var pw_ck = pw_eq && pw_length;
-			if(pw_ck){
-				$("input[type=password]").parent("div").removeClass("has-danger");
-				$("input[type=password]").removeClass("is-invalid");
-				$("input[type=password]").parent("div").addClass("has-success");
-				$("input[type=password]").addClass("is-valid");
-			}else{
-				$("input[type=password]").parent("div").removeClass("has-success");
-				$("input[type=password]").removeClass("is-valid");
-				$("input[type=password]").parent("div").addClass("has-danger");
-				$("input[type=password]").addClass("is-invalid");
-				$(".invalid-feedback").text(pw_length?"비밀번호가 일치하지 않습니다":"비밀번호는 최소 4자리 이상이어야 합니다")
-			}	    
-		    
+		    var pw_regex_check = pw_regex.test($(this).val());
+		    var pw_ck = pw_eq && pw_regex_check;
+		    isValid(pw_ck, $("input[type=password]"));
+		    $(".invalid-feedback").text(pw_regex_check?"비밀번호가 일치하지 않습니다":"최소 6자리 이상, 영문 숫자 특수기호를 포함해주세요")
+	    
 		    
 	});
 	 $(".btn-preview").click(function() {
@@ -47,5 +44,13 @@ $(function () {
 		 	$("#brd_preview").html(content);
 		 	$("#brd_previewModal").modal();
 	 })
-	 
+	     function isValid(flag,selector) {
+        if(flag){
+            selector.removeClass("is-invalid")
+            selector.addClass("is-valid")
+        }else{
+            selector.removeClass("is-valid")
+            selector.addClass("is-invalid")
+        }
+    }
 });

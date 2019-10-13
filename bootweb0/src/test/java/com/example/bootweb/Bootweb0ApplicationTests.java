@@ -13,6 +13,7 @@ import com.example.bootweb.domain.BoardVO;
 import com.example.bootweb.domain.Criteria;
 import com.example.bootweb.mapper.BoardMapper;
 import com.example.bootweb.service.inf.BoardService;
+import com.example.bootweb.util.UserSHA256;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -29,7 +30,7 @@ public class Bootweb0ApplicationTests {
 	
 	@Test
 	public void contextLoads() {
-		log.info("list cnt : "+boardMapper.stateCnt("NORMAL"));
+		log.info("1:{}",UserSHA256.encrypt(""));
 		//log.info(boardMapper.pageNum(9,10)+"");
 		//boardMapper.insert(new BoardVO("ttt", "www", "ccc"));
 		//int max = boardService.listAll().size();
