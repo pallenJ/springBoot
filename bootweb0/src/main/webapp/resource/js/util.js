@@ -42,12 +42,19 @@ $(function () {
 	    
 		    
 	});
+	 
+	 $(".insert-view-checkbox").change(function() {
+	 	$(".insert-view").prop("type", $(this).prop("checked")?"text":"password");
+	 })
+	 
+	 
 	 $(".btn-preview").click(function() {
 		 	var content = summerTrs($('#content_div').summernote("code"));
 		 	$("#brd_preview").html(content);
 		 	$("#brd_previewModal").modal();
-	 })
-	     function isValid(flag,selector) {
+	 });
+	 
+	 function isValid(flag,selector) {//성공 실패 상태를 위한것. toggle처리하기가 곤란해서 메소드를 만듦
         if(flag){
             selector.removeClass("is-invalid")
             selector.addClass("is-valid")
