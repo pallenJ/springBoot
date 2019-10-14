@@ -87,10 +87,9 @@ public class BoardController {
 	@PostMapping(value = "/register")
 	public String register(HttpServletRequest request,BoardVO vo , Model model) {
 		vo.setIp_address(getIpAdress(request));
-		vo.setPassword(UserSHA256.encrypt(vo.getPassword()));
 		log.info(vo.toString());
-		boardService.register(vo);
-		return "redirect:/board/list";
+		String rdrURL = boardService.register(vo);
+		return "redirect:"+rdrURL;
 	}
 	
 	  @GetMapping(value = "/remove") 

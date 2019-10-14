@@ -11,7 +11,7 @@ public interface BoardService {
 	public List<?> list(Criteria cri);
 	public int countAll();
 	public BoardVO detail(int bno);
-	public void register(BoardVO vo);
+	public String register(BoardVO vo);
 	public int remove(int bno);
 	
 	public List<?> historyList(int bno);

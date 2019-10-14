@@ -11,6 +11,7 @@ import com.example.bootweb.domain.BoardVO;
 import com.example.bootweb.domain.Criteria;
 import com.example.bootweb.mapper.BoardMapper;
 import com.example.bootweb.service.inf.BoardService;
+import com.example.bootweb.util.UserSHA256;
 
 @Service("boardService")
 public class BoardServiceImpl implements BoardService {
@@ -40,13 +41,17 @@ public class BoardServiceImpl implements BoardService {
 	}
 
 	@Override
-	public void register(BoardVO vo) {
+	public String register(BoardVO vo) {
 		// TODO Auto-generated method stub
-		if(vo.getBno()==0)
+		if(vo.getBno()==0) {
+		vo.setPassword(UserSHA256.encrypt(vo.getPassword()));	
 		boardMapper.insert(vo);
+		return "/board/list";
+		}
 		else {
 		boardMapper.insertHistory(vo.getBno());
 		boardMapper.update(vo);	 
+		return "/board/"+vo.getBno();
 		}
 	}
  

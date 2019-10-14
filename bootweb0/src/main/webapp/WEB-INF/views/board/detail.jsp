@@ -14,6 +14,18 @@
 <meta charset="UTF-8">
 <%@include file="../include/header.jsp"%>
 <!-- 부트 스트랩 테마 및 리소스, navbar -->
+<!-- <link href="http://netdna.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.css" rel="stylesheet"> 
+<script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.js"></script> 
+<script src="http://netdna.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.js"></script>  -->
+<script src="/resource/summernote/dist/lang/summernote-ko-KR.js"></script>
+<script src="/resource/summernote/dist/summernote.js"></script>
+<script src="/resource/summernote/dist/summernote.min.js"></script>
+<link href="/resource/summernote/dist/summernote.css">
+<!-- <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/3.20.0/codemirror.css">
+<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/3.20.0/theme/monokai.css">
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/3.20.0/codemirror.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/3.20.0/mode/xml/xml.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/2.36.0/formatting.js"></script> -->
 
 <title>Board</title>
 </head>
@@ -96,7 +108,8 @@
 					<!-- 글쓴이는 변경 불가 -->
 					<!-- /.writer -->
 					<!-- button들 -->
-					<div id="detail-pg-btns">
+					<div id="detail-pg-btns"> 
+					
 						<!-- 그냥 볼때를 detail상태, 수정시 modify라고 구분. -->
 						<!-- btn-for-detail은 detail상태에서만 보이는 버튼 -->
 						<!-- btn-for-modify는 modify상태에서만 보이는 버튼 -->
@@ -315,6 +328,10 @@
 								[ 'view', [ 'fullscreen', 'codeview' ] ],
 								[ 'help', [ 'help' ] ] ],
 						height : 300,
+						  codemirror: { // codemirror options
+							    theme: 'monokai'
+							  },
+						//airMode: true,
 						lang : 'ko-KR',
 					});
 			/* 
